@@ -6,8 +6,8 @@
 .item5 {
   background: PaleGreen;
   /* Only change code below this line */
-  grid-column: 2 / 4;
-
+  grid-column: 2 / 4; /* consume the last 2 columns */
+  grid-row: 2 / 4; /* consume the last 2 rows */
   /* Only change code above this line */
 }
 
