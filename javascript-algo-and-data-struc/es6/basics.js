@@ -15,7 +15,7 @@ arr1[1] = 2;
 console.log(arr2); // ['JAN', 'FEB', 'MAR', 'APR', 'MAY']
 console.log(arr1); //  ['JAN', 2, 'MAR', 'APR', 'MAY']
 
-// destructuing assignment
+// destructuring assignment
 const HIGH_TEMPERATURES = {
   yesterday: 75,
   today: 77,
@@ -24,3 +24,19 @@ const HIGH_TEMPERATURES = {
 
 const { today, tomorrow } = HIGH_TEMPERATURES; 
 console.log(today, tomorrow); // 77 88
+
+// can then assign variable names to values from dictionary
+const { today : highToday, tomorrow : highTomorrow } = HIGH_TEMPERATURES; 
+console.log(highToday, highTomorrow);
+
+// destructuring assignment of nested objects
+const LOCAL_FORECAST = {
+  yesterday: { low: 61, high: 75 },
+  today: { low: 64, high: 77 },
+  tomorrow: { low: 68, high: 80 }
+};
+
+const { today : { low : lowToday, high : highToday } } = LOCAL_FORECAST;
+// instead of the following codes below
+// const lowToday = LOCAL_FORECAST.today.low;
+// const highToday = LOCAL_FORECAST.today.high;
