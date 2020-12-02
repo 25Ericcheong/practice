@@ -40,3 +40,18 @@ const { today : { low : lowToday, high : highToday } } = LOCAL_FORECAST;
 // instead of the following codes below
 // const lowToday = LOCAL_FORECAST.today.low;
 // const highToday = LOCAL_FORECAST.today.high;
+
+// swapping of variables with destructuring 
+let a = 8, b = 6;
+// Only change code below this line
+[b, a] = [a, b]
+
+// destructuring assignment with the rest parameter to reassign elements
+const source = [1,2,3,4,5,6,7,8,9,10];
+function removeFirstTwo(list) {
+  // Only change code below this line
+  const [item1, item2, ...arr] = list; // Change this line
+  // Only change code above this line
+  return arr;
+}
+const arr = removeFirstTwo(source); // returns [3,4,5,6,7,8,9,10]
