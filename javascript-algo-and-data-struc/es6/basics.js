@@ -43,15 +43,27 @@ const { today : { low : lowToday, high : highToday } } = LOCAL_FORECAST;
 
 // swapping of variables with destructuring 
 let a = 8, b = 6;
-// Only change code below this line
 [b, a] = [a, b]
 
 // destructuring assignment with the rest parameter to reassign elements
 const source = [1,2,3,4,5,6,7,8,9,10];
 function removeFirstTwo(list) {
-  // Only change code below this line
   const [item1, item2, ...arr] = list; // Change this line
-  // Only change code above this line
   return arr;
 }
 const arr = removeFirstTwo(source); // returns [3,4,5,6,7,8,9,10]
+
+// destructuring assignment to pass an object as function parameter
+// only calculate the average of min and max of object
+
+const stats = {
+  max: 56.78,
+  standard_deviation: 4.34,
+  median: 34.54,
+  mode: 23.87,
+  min: -0.75,
+  average: 35.85
+};
+
+const half = ({ max, min }) => (max + min) / 2.0; 
+console.log(half(stats)); // 28.015
