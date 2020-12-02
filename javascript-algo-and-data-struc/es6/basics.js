@@ -15,3 +15,12 @@ arr1[1] = 2;
 console.log(arr2); // ['JAN', 'FEB', 'MAR', 'APR', 'MAY']
 console.log(arr1); //  ['JAN', 2, 'MAR', 'APR', 'MAY']
 
+// destructuing assignment
+const HIGH_TEMPERATURES = {
+  yesterday: 75,
+  today: 77,
+  tomorrow: 80
+};
+
+const { today, tomorrow } = HIGH_TEMPERATURES; 
+console.log(today, tomorrow); // 77 88
