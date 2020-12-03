@@ -114,28 +114,41 @@ console.log(createPerson('eric', 12, 'male'));
 
 
 // concise declarative functions with ES6
-// from this (ES5)
-// Only change code below this line
+// ES5
 const bicycle = {
   gear: 2,
   setGear: function(newGear) {
     this.gear = newGear;
   }
 };
-// Only change code above this line
 bicycle.setGear(3);
 console.log(bicycle.gear); // 3
 
-// to this (ES6)
-// Only change code below this line
+// ES6
 const bicycle = {
   gear: 2,
   setGear(newGear) {
     this.gear = newGear;
   }
 };
-// Only change code above this line
+
 bicycle.setGear(3);
 console.log(bicycle.gear); // 3
 
 
+
+// class syntax to define constructor function
+// ES5
+// var Vegetable = function(veggieName) {
+//     this.name = veggieName;
+// }
+
+// ES6
+class Vegetable {
+  constructor (veggieName) {
+      this.name = veggieName
+  }
+}
+
+const carrot = new Vegetable('carrot');
+console.log(carrot.name); // Should display 'carrot'
