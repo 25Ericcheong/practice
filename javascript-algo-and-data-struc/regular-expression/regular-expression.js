@@ -87,3 +87,16 @@ let quoteSample = "Blueberry 3.141592653s are delicious.";
 let myRegex = /[h-s2-6]/gi; 
 let result = quoteSample.match(myRegex); // outputs an array that has has either 1 letter or number for each element
 
+// match single characters not specified
+// Create a single regex that matches all characters that are not a number or a vowel.
+let quoteSample = "3 blind mice.";
+let myRegex = /[^1-9|^aeiou]/ig; 
+let result = quoteSample.match(myRegex); 
+
+// match characters that occur one or more times
+//For example, /a+/g would find one match in "abc" and return ["a"]. Because of the +, it would also find a single match in "aabc" and return ["aa"].
+// If it were instead checking the string "abab", it would find two matches and return ["a", "a"] because the a characters are not in a row - there is a b between them. Finally, since there is no "a" in the string "bcd", it wouldn't find a match.
+let difficultSpelling = "Mississippi";
+let myRegex = /s+/g; 
+let result = difficultSpelling.match(myRegex);
+console.log(result); // outputs ['ss','ss']
