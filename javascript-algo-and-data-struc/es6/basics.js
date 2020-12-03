@@ -105,3 +105,37 @@ console.log(failuresList);
 //   '<li class="text-warning">var-on-top</li>',
 //   '<li class="text-warning">linebreak</li>'
 // ]
+
+// concise object literal declarations using object property shorthand
+const createPerson = (name, age, gender) => ({name, age, gender});
+console.log(createPerson('eric', 12, 'male')); 
+// outputs { name: 'eric', age: 12, gender: 'male' } 
+
+
+
+// concise declarative functions with ES6
+// from this (ES5)
+// Only change code below this line
+const bicycle = {
+  gear: 2,
+  setGear: function(newGear) {
+    this.gear = newGear;
+  }
+};
+// Only change code above this line
+bicycle.setGear(3);
+console.log(bicycle.gear); // 3
+
+// to this (ES6)
+// Only change code below this line
+const bicycle = {
+  gear: 2,
+  setGear(newGear) {
+    this.gear = newGear;
+  }
+};
+// Only change code above this line
+bicycle.setGear(3);
+console.log(bicycle.gear); // 3
+
+
