@@ -176,6 +176,8 @@ temp = thermos.temperature; // 26 in Celsius
 
 
 // to export functions and import them in another script
+// say this is a different file
+// we can export these functions as such
 const uppercaseString = (string) => {
   return string.toUpperCase();
 }
@@ -185,3 +187,65 @@ const lowercaseString = (string) => {
 }
 
 export {uppercaseString, lowercaseString};
+
+// to import functions 
+// assuming file is called string_function.js
+import {uppercaseString, lowercaseString} from './string_functions.js';
+uppercaseString("hello");
+lowercaseString("WORLD!");
+
+import * as stringFunctions from "./string_functions.js"
+stringFunctions.uppercaseString("hello");
+stringFunctions.lowercaseString("WORLD!");
+
+// to create an export fallback
+function subtract(x, y) {
+  return x - y;
+}
+
+export default function (x,y) {
+  return x - y;
+}
+
+// to import a default export
+// The syntax differs in one key place. The imported value, add, is not surrounded by curly braces ({})
+// imagine it is from a file called math_functions.js
+import subtract from "./math_functions.js";
+// Only change code above this line
+
+subtract(7,4);
+
+
+
+// create a javascript promise
+const makeServerRequest = new Promise((resolve, reject) => {
+});
+
+// promise has three states: pending, fulfilled, and rejected. The promise `created before is forever stuck in the pending state because you did not add a way to complete the promise. The resolve and reject parameters given to the promise argument are used to do this. resolve is used when you want your promise to succeed, and reject is used when you want it to fail. These are methods that take an argument, as seen below.
+
+const makeServerRequest = new Promise((resolve, reject) => {
+  // responseFromServer represents a response from a server
+  let responseFromServer;
+    
+  if(responseFromServer) {
+    resolve("We got the data");
+  } else {  
+    reject("Data not received");
+  }
+});
+
+// The example above uses strings for the argument of these functions, but it can really be anything. Often, it might be an object, that you would use data from, to put on your website or elsewhere.
+
+makeServerRequest.then(result => {
+  console.log(result);
+});
+
+// Promises are most useful when you have a process that takes an unknown amount of time in your code (i.e. something asynchronous), often a server request. When you make a server request it takes some amount of time, and after it completes you usually want to do something with the response from the server. This can be achieved by using the then method. The then method is executed immediately after your promise is fulfilled with resolve.
+
+makeServerRequest.catch(error => {
+  console.log(error);
+});
+
+// handle a rejected promise with catch
+// catch is the method used when your promise has been rejected. It is executed immediately after a promise's reject method is called.
+
