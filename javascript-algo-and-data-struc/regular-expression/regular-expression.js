@@ -100,3 +100,23 @@ let difficultSpelling = "Mississippi";
 let myRegex = /s+/g; 
 let result = difficultSpelling.match(myRegex);
 console.log(result); // outputs ['ss','ss']
+
+// match characters that occur zero or more times
+let soccerWord = "gooooooooal!";
+let gPhrase = "gut feeling";
+let oPhrase = "over the moon";
+let goRegex = /go*/;
+soccerWord.match(goRegex); // Returns ["goooooooo"]
+gPhrase.match(goRegex); // Returns ["g"]
+oPhrase.match(goRegex); // Returns null
+
+// chewieQuote has been initialized as "Aaaaaaaaaaaaaaaarrrgh!"
+let chewieRegex = /Aa*/; // Change this line
+// Create a regex chewieRegex that uses the * character to match an uppercase "A" character immediately followed by zero or more lowercase "a" characters in chewieQuote
+let result = chewieQuote.match(chewieRegex);
+console.log(result);
+// [ 'Aaaaaaaaaaaaaaaa',
+//   index: 0,
+//   input: 'Aaaaaaaaaaaaaaaarrrgh!',
+//   groups: undefined ]
+
