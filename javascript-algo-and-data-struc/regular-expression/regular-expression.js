@@ -73,3 +73,17 @@ batStr.match(bgRegex); // Returns ["bat"]
 matStr.match(bgRegex); // Returns null
 
 // another example
+let quoteSample = "The quick brown fox.";
+let alphabetRegex = /[a-z]/gi;
+let result = quoteSample.match(alphabetRegex); 
+console.log(result)
+// [ 'T','h','e',
+//   'q','u','i','c','k',
+//   'b','r','o','w','n',
+//   'f','o','x',]
+
+// match numbers and letters of alphabet
+let quoteSample = "Blueberry 3.141592653s are delicious.";
+let myRegex = /[h-s2-6]/gi; 
+let result = quoteSample.match(myRegex); // outputs an array that has has either 1 letter or number for each element
+
