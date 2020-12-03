@@ -152,3 +152,36 @@ class Vegetable {
 
 const carrot = new Vegetable('carrot');
 console.log(carrot.name); // Should display 'carrot'
+
+// setters and getters
+class Thermostat {
+  constructor(fahrenheit) {
+      this._temp = 5/9 * (fahrenheit - 32);
+  }
+
+  get temperature() {
+      return (this._temp);
+  }
+
+  set temperature(updatedTemp) {
+      this._temp = updatedTemp;
+  }
+}
+
+const thermos = new Thermostat(76); // Setting in Fahrenheit scale
+let temp = thermos.temperature; // 24.44 in Celsius
+thermos.temperature = 26;
+temp = thermos.temperature; // 26 in Celsius
+
+
+
+// to export functions and import them in another script
+const uppercaseString = (string) => {
+  return string.toUpperCase();
+}
+
+const lowercaseString = (string) => {
+  return string.toLowerCase()
+}
+
+export {uppercaseString, lowercaseString};
