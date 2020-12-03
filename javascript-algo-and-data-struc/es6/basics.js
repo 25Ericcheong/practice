@@ -5,6 +5,8 @@ const sum = (...args) => {
 console.log(sum(1,2,3)); // returns 6
 // The rest parameter eliminates the need to check the args array and allows us to apply map(), filter() and reduce() on the parameters array
 
+
+
 // uses spread operator
 const arr1 = ['JAN', 'FEB', 'MAR', 'APR', 'MAY'];
 let arr2;
@@ -14,6 +16,8 @@ arr2 = [...arr1];  // creates a duplicate of arr1
 arr1[1] = 2;
 console.log(arr2); // ['JAN', 'FEB', 'MAR', 'APR', 'MAY']
 console.log(arr1); //  ['JAN', 2, 'MAR', 'APR', 'MAY']
+
+
 
 // destructuring assignment
 const HIGH_TEMPERATURES = {
@@ -67,3 +71,37 @@ const stats = {
 
 const half = ({ max, min }) => (max + min) / 2.0; 
 console.log(half(stats)); // 28.015
+
+
+
+// template literals
+// use of ` (not ' or ")
+// string is multi-line - saves the need of \n
+// use of ${} as placeholder - do not need + operator for concatenation
+// Can even include other expression by ${a + b}
+
+const result = {
+  success: ["max-length", "no-amd", "prefer-arrow-functions"],
+  failure: ["no-var", "var-on-top", "linebreak"],
+  skipped: ["no-extra-semi", "no-dup-keys"]
+};
+
+function makeList(arr) {
+  const failureItems = [];
+
+  for (let i = 0; i < arr.length; i++) {
+    const line = `<li class="text-warning">${arr[i]}</li>`;
+    console.log(line);
+    failureItems.push(line);
+  }
+  return failureItems;
+}
+
+const failuresList = makeList(result.failure);
+console.log(failuresList); 
+// prints the following
+// [
+//   '<li class="text-warning">no-var</li>',
+//   '<li class="text-warning">var-on-top</li>',
+//   '<li class="text-warning">linebreak</li>'
+// ]
