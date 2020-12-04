@@ -220,3 +220,28 @@ let result = userCheck.test(username);
 // \d*          - and ends with zero or more numbers
 // $            - end of input
 // i            - ignore case of input
+
+// match whitespace
+let sample = "Whitespace is important in separating words";
+let countWhiteSpace = /\s/g; 
+let result = sample.match(countWhiteSpace); // matches all whitespaces found
+
+// match non-whitespace
+let sample = "Whitespace is important in separating words";
+let countNonWhiteSpace = /\S/g; 
+let result = sample.match(countNonWhiteSpace); // matches all non-whitespaces
+
+// specify upper and lower number of matches
+// For example, to match only the letter a appearing between 3 and 5 times in the string "ah", your regex would be /a{3,5}h/
+let A4 = "aaaah";
+let A2 = "aah";
+let multipleA = /a{3,5}h/;
+multipleA.test(A4); // Returns true
+multipleA.test(A2); // Returns false
+
+// has to match Oh(3x to 6x of it) no
+let ohStr = "Ohhh no";
+let ohRegex = /Oh{3,6}\sno/;
+let result = ohRegex.test(ohStr);
+
+
