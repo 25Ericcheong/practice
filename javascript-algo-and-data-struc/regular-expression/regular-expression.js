@@ -244,4 +244,9 @@ let ohStr = "Ohhh no";
 let ohRegex = /Oh{3,6}\sno/;
 let result = ohRegex.test(ohStr);
 
+// check for all or none
+// You can specify the possible existence of an element with a question mark, ?. This checks for zero or one of the preceding element
+let favWord = "favorite";
+let favRegex = /favou?rite/; // can have u or not have it at all
+let result = favRegex.test(favWord);
 
