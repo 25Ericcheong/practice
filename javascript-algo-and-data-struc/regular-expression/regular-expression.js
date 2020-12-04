@@ -111,7 +111,7 @@ gPhrase.match(goRegex); // Returns ["g"]
 oPhrase.match(goRegex); // Returns null
 
 // chewieQuote has been initialized as "Aaaaaaaaaaaaaaaarrrgh!"
-let chewieRegex = /Aa*/; // Change this line
+let chewieRegex = /Aa*/;
 // Create a regex chewieRegex that uses the * character to match an uppercase "A" character immediately followed by zero or more lowercase "a" characters in chewieQuote
 let result = chewieQuote.match(chewieRegex);
 console.log(result);
@@ -181,3 +181,42 @@ let result = movieName.match(numRegex).length; // counts number of digits in thi
 let movieName = "2001: A Space Odyssey";
 let noNumRegex = /\D/ig; // Change this line
 let result = movieName.match(noNumRegex).length;
+
+// challenge
+// conditions are as such
+// 1) Usernames can only use alpha-numeric characters.
+// 2) The only numbers in the username have to be at the end. There can be zero or more of them at the end. Username cannot start with the number.
+// 3) Username letters can be lowercase and uppercase.
+// 4) Usernames have to be at least two characters long. A two-character username can only use alphabet letters as characters.
+
+// test cases can be found here
+// https://www.freecodecamp.org/learn/javascript-algorithms-and-data-structures/regular-expressions/restrict-possible-usernames
+let username = "JackOfAllTrades";
+let userCheck = /^[a-z]([0-9][0-9]+|[a-z]+\d*)$/i;
+let result = userCheck.test(username);
+console.log(result);
+
+// additional information
+// ^            - start of input
+// [a-z]        - first character is a letter
+// [0-9][0-9]+  - ends with two or more numbers
+// |            - or
+// [a-z]+       - has one or more letters next
+// /d*          - and ends with zero or more numbers
+// $            - end of input
+// i            - ignore case of input
+
+// another way of doing
+let username = "JackOfAllTrades";
+const userCheck = /^[a-z]([0-9]{2,}|[a-z]+\d*)$/i;
+let result = userCheck.test(username);
+
+// additional information
+// ^            - start of input
+// [a-z]        - first character is a letter
+// [0-9]{2,0}   - ends with two or more numbers
+// |            - or 
+// [a-z]+       - has one or more letters next
+// \d*          - and ends with zero or more numbers
+// $            - end of input
+// i            - ignore case of input
