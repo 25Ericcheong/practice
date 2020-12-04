@@ -287,3 +287,17 @@ let result = myRegex.test(myString);
 
 // additional information
 // you must either have Franklin or Elanor and must end with Roosevelt
+
+// Reuse patterns using capture groups
+// To specify where that repeat string will appear, you use a backslash (\) and then a number. This number starts at 1 and increases with each additional capture group you use. An example would be \1 to match the first group.
+let repeatStr = "regex regex";
+let repeatRegex = /(\w+)\s\1/;
+repeatRegex.test(repeatStr); // Returns true
+repeatStr.match(repeatRegex); // Returns ["regex regex", "regex"]
+
+// challenge
+// Use capture groups in reRegex to match numbers that are repeated only three times in a string, each separated by a space.
+let repeatNum = "42 42 42";
+let reRegex = /(^\d+)\s\1\s\1$/;
+let result = repeatNum.match(reRegex);
+
