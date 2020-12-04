@@ -280,3 +280,10 @@ let result = pwRegex.test(sampleWord);
 // second ?=
 // \w{6,}   - string must be at least 6 character or larger long
 
+// Checks for mixed grouping of characters
+let myString = "Franklin D. Roosevelt";
+let myRegex = /(Franklin|Eleanor).*Roosevelt/; 
+let result = myRegex.test(myString); 
+
+// additional information
+// you must either have Franklin or Elanor and must end with Roosevelt
