@@ -179,7 +179,7 @@ let result = movieName.match(numRegex).length; // counts number of digits in thi
 // match all non-numbers
 // Use the shorthand character class for non-digits \D to count how many non-digits are in movie titles.
 let movieName = "2001: A Space Odyssey";
-let noNumRegex = /\D/ig; // Change this line
+let noNumRegex = /\D/ig;
 let result = movieName.match(noNumRegex).length;
 
 // challenge
@@ -249,4 +249,34 @@ let result = ohRegex.test(ohStr);
 let favWord = "favorite";
 let favRegex = /favou?rite/; // can have u or not have it at all
 let result = favRegex.test(favWord);
+
+// positive and negative lookahead
+// A positive lookahead will look to make sure the element in the search pattern is there, but won't actually match it. A positive lookahead is used as (?=...) where the ... is the required part that is not matched.
+
+// On the other hand, a negative lookahead will look to make sure the element in the search pattern is not there. A negative lookahead is used as (?!...) where the ... is the pattern that you do not want to be there. The rest of the pattern is returned if the negative lookahead part is not present.
+let quit = "qu";
+let noquit = "qt";
+let quRegex= /q(?=u)/; // checks if u exists
+let qRegex = /q(?!u)/;  // ensures u does not exists
+quit.match(quRegex); // Returns ["q"]
+noquit.match(qRegex); // Returns ["q"]
+
+// A more practical use of lookaheads is to check two or more patterns in one string. Here is a (naively) simple password checker that looks for between 3 and 6 characters and at least one number:
+let password = "abc123";
+let checkPass = /(?=\w{3,6})(?=\D*\d)/;
+checkPass.test(password); // Returns true
+
+// challenge
+let sampleWord = "12abcde";
+let pwRegex = /(?=^\D\w*\d{2})(?=\w{6,})/;
+let result = pwRegex.test(sampleWord);
+
+// additional information
+// first ?=
+// ^        - start of input 
+// \D       - must be non-digit
+// \w*      - ends with one or more alphanumeric
+// \d{2}    - there must be at 2 consecutive digits
+// second ?=
+// \w{6,}   - string must be at least 6 character or larger long
 
