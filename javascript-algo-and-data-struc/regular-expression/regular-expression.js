@@ -155,6 +155,17 @@ shortHand.test(varNames); // Returns true
 
 // Use the shorthand character class \w to count the number of alphanumeric characters in various quotes and strings.
 let quoteSample = "The five boxing wizards jump quickly.";
-let alphabetRegexV2 = /\w/gi; // Change this line
+let alphabetRegexV2 = /\w/gi;
 let result = quoteSample.match(alphabetRegexV2).length;
 
+// match everything but letters and numbers
+let shortHand = /\W/;
+let numbers = "42%";
+let sentence = "Coding!";
+numbers.match(shortHand); // Returns ["%"]
+sentence.match(shortHand); // Returns ["!"]
+
+// Use the shorthand character class \W to count the number of non-alphanumeric characters in various quotes and strings.
+let quoteSample = "The five boxing wizards jump quickly.";
+let nonAlphabetRegex = /\W/ig;
+let result = quoteSample.match(nonAlphabetRegex).length;
