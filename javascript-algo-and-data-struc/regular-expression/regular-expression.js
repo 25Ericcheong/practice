@@ -130,3 +130,15 @@ let text = "<h1>Winter is coming</h1>";
 let myRegex = /<h*?1>/;
 let result = text.match(myRegex); // finds <h1> only
 
+// match beginning string patterns
+// caret character (^) inside a character set to create a negated character set in the form [^thingsThatWillNotBeMatched]. Outside of a character set, the caret is used to search for patterns at the beginning of strings.
+let rickyAndCal = "Cal and Ricky both like racing.";
+let calRegex = /^Cal/;
+let result = calRegex.test(rickyAndCal); // will be true because Cal is at the beginning of string
+
+// match ending string patterns
+// a way to search for patterns at the end of strings.
+let caboose = "The last car on a train is the caboose";
+let lastRegex = /caboose$/; // will be true becauase caboose is at the end of string
+let result = lastRegex.test(caboose);
+
