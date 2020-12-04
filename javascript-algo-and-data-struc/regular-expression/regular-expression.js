@@ -169,3 +169,11 @@ sentence.match(shortHand); // Returns ["!"]
 let quoteSample = "The five boxing wizards jump quickly.";
 let nonAlphabetRegex = /\W/ig;
 let result = quoteSample.match(nonAlphabetRegex).length;
+
+// match all numbers
+// The shortcut to look for digit characters is \d, with a lowercase d. This is equal to the character class [0-9], which looks for a single character of any number between zero and nine.
+let movieName = "2001: A Space Odyssey";
+let numRegex = /\d/ig;
+let result = movieName.match(numRegex).length; // counts number of digits in this string
+
+
