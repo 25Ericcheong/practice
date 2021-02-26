@@ -29,3 +29,25 @@ function copyMachine(arr, num) {
 }
 
 console.log(copyMachine([true, false, true], 2));
+
+// prints 'learning', 'to' ... 'fun'
+function spreadOut() {
+  let fragment = ['to', 'code'];
+  let sentence = ['learning', ...fragment, 'is', 'fun'];
+  return sentence;
+}
+
+console.log(spreadOut());
+
+// false if element doesn't exist in array and true if it does
+function quickCheck(arr, elem) {
+  // Only change code below this line
+  if (arr.indexOf(elem) != -1) {
+    return true;
+  } else {
+    return false;
+  }
+  // Only change code above this line
+}
+
+console.log(quickCheck(['squash', 'onions', 'shallots'], 'mushrooms'));
