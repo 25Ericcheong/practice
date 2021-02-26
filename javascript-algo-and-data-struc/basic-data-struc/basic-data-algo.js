@@ -144,3 +144,64 @@ function isEveryoneHere(obj) {
 }
 
 console.log(isEveryoneHere(users));
+
+// counts number of users online
+// object has the following structure
+// {
+//   Alan: {
+//     online: false
+//   },
+//   Jeff: {
+//     online: true
+//   },
+//   Sarah: {
+//     online: false
+//   }
+// }
+
+function countOnline(usersObj) {
+  // Only change code below this line
+  let count = 0;
+  for (let user in usersObj) {
+    console.log(user);
+
+    if (usersObj[user].online) {
+      count++
+    }
+  }
+  return count;
+  // Only change code above this line
+}
+
+let users = {
+  Alan: {
+    age: 27,
+    online: false
+  },
+  Jeff: {
+    age: 32,
+    online: true
+  },
+  Sarah: {
+    age: 48,
+    online: false
+  },
+  Ryan: {
+    age: 19,
+    online: true
+  }
+};
+
+// acquire all keys in object and add to array
+function getArrayOfUsers(obj) {
+  // Only change code below this line
+  let temp = [];
+  for (let key in obj) {
+    temp.push(key);
+  }
+  return temp;
+  // Only change code above this line
+}
+
+console.log(getArrayOfUsers(users));
+
