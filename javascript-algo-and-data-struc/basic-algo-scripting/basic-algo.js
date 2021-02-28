@@ -164,5 +164,31 @@ function titleCase(str) {
   return store.slice(0,store.length - 1)
 }
 
+// You are given two arrays and an index.
+
+// Copy each element of the first array into the second array, in order.
+
+// Begin inserting elements at index n of the second array.
+
+// Return the resulting array. The input arrays should remain the same after the function runs.
+
 titleCase("I'm a little tea pot");
 
+function frankenSplice(arr1, arr2, n) {
+  let combine = [];
+  let store = arr2.slice(n, arr2.length);
+  let temp = arr2.slice(0, n);
+  loopAddArr(temp, combine);
+  loopAddArr(arr1, combine);
+  loopAddArr(store, combine);
+
+  return combine;
+}
+
+function loopAddArr(arr1, arr2) {
+  for (let i = 0; i < arr1.length; i++) {
+    arr2.push(arr1[i]);
+  }
+}
+
+frankenSplice([1, 2, 3], [4, 5, 6], 1);
