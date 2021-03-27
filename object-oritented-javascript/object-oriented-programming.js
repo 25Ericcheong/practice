@@ -226,3 +226,53 @@ Dog.prototype.bark = function() { console.log("Woof!"); }
 // Only change code above this line
 
 let beagle = new Dog();
+
+// It's possible to override an inherited method. It's done the same way - by adding a method to ChildObject.prototype using the same method name as the one to override
+function Bird() { }
+
+Bird.prototype.fly = function() { return "I am flying!"; };
+
+function Penguin() { }
+Penguin.prototype = Object.create(Bird.prototype);
+Penguin.prototype.constructor = Penguin;
+
+// Only change code below this line
+Penguin.prototype.fly = function() { return "Alas, this is a flightless bird." }
+
+// Only change code above this line
+let penguin = new Penguin();
+console.log(penguin.fly());
+
+// For unrelated objects, it's better to use mixins. A mixin allows other objects to use a collection of functions.
+let bird = {
+  name: "Donald",
+  numLegs: 2
+};
+
+let boat = {
+  name: "Warrior",
+  type: "race-boat"
+};
+
+// Only change code below this line
+let glideMixin = function(obj) {
+  obj.glide = function() {
+    console.log("gliding");
+  }
+}
+
+glideMixin(bird);
+glideMixin(boat);
+
+
+// The simplest way to make this public property private is by creating a variable within the constructor function. This changes the scope of that variable to be within the constructor function versus available globally. This way, the variable can only be accessed and changed by methods also within the constructor function.
+function Bird() {
+  // this.weight = 15; <- initial variable was public
+  let weight = 15;
+  this.getWeight = function() {
+    return weight;
+  };
+}
+
+let bird = new Bird();
+bird.getWeight();
