@@ -290,3 +290,63 @@ console.log(JSON.stringify(ratings));
 
 
 
+// Implement map on a Prototype
+// Write your own Array.prototype.myMap(), which should behave exactly like Array.prototype.map(). You should not use the built-in map method. The Array instance can be accessed in the myMap method using this.
+// The global variable
+var s = [23, 65, 98, 5];
+
+Array.prototype.myMap = function(callback) {
+  var newArray = [];
+  // Only change code below this line
+  for (let i = 0; i < this.length; i++) {
+    newArray.push(callback(this[i]));
+  }
+  // Only change code above this line
+  return newArray;
+};
+
+var new_s = s.myMap(function(item) {
+  return item * 2;
+});
+console.log(new_s);
+
+
+
+// The variable watchList holds an array of objects with information on several movies. Use a combination of filter and map on watchList to assign a new array of objects with only title and rating keys. The new array should only include objects where imdbRating is greater than or equal to 8.0. Note that the rating values are saved as strings in the object and you may need to convert them into numbers to perform mathematical operations on them.
+var filteredList;
+filteredList = watchList.map(item => {
+    const container = {};
+
+    container["title"] = item["Title"];
+    container["rating"] = item["imdbRating"];
+
+    return container;
+}).filter(item => parseFloat(item["rating"]) >= 8.0);
+
+console.log(filteredList);
+
+
+
+// Write your own Array.prototype.myFilter(), which should behave exactly like Array.prototype.filter(). You should not use the built-in filter method. The Array instance can be accessed in the myFilter method using this.
+// The global variable
+var s = [23, 65, 98, 5];
+
+Array.prototype.myFilter = function(callback) {
+  // Only change code below this line
+  var newArray = [];
+  for (let i = 0;  i < this.length; i++) {
+    if (callback(this[i])) {
+      newArray.push(this[i]);
+    }
+  }
+  // Only change code above this line
+  return newArray;
+};
+
+var new_s = s.myFilter(function(item) {
+  return item % 2 === 1;
+});
+console.log(new_s);
+
+
+
