@@ -350,3 +350,39 @@ console.log(new_s);
 
 
 
+// Use the concat method in the nonMutatingConcat function to concatenate attach to the end of original. The function should return the concatenated array.
+function nonMutatingConcat(original, attach) {
+  // Only change code below this line
+  let newArr = original.concat(attach);
+  return newArr;
+  // Only change code above this line
+}
+var first = [1, 2, 3];
+var second = [4, 5];
+nonMutatingConcat(first, second);
+
+
+
+// The variable watchList holds an array of objects with information on several movies. Use reduce to find the average IMDB rating of the movies directed by Christopher Nolan. Recall from prior challenges how to filter data and map over it to pull what you need. You may need to create other variables, and return the average rating from getRating function. Note that the rating values are saved as strings in the object and need to be converted into numbers before they are used in any mathematical operations.
+function getRating(watchList){
+  // Only change code below this line
+  var filteredDict;
+  filteredDict = watchList.filter(item => 
+  item["Director"] == "Christopher Nolan").map(item => {
+    console.log(item["imdbRating"]);
+    const ratingArr = [];
+
+    ratingArr.push(parseFloat(item["imdbRating"]));
+
+    return ratingArr;
+  });
+
+  console.log(filteredDict)
+
+  var averageRating;
+  averageRating = filteredDict.reduce((sum, item, index, array) => sum + item[0] / array.length, 0);
+  
+  // Only change code above this line
+  return averageRating;
+}
+console.log(getRating(watchList));
