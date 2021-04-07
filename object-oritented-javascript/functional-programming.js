@@ -400,4 +400,66 @@ const squaredIntegers = squareList([-3, 4.8, 5, 3, -3.2]);
 console.log(squaredIntegers);
 
 
+// ternary operator
+// The sort method sorts the elements of an array according to the callback function.
+function ascendingOrder(arr) {
+  return arr.sort(function(a, b) {
+    return a - b;
+  });
+}
+ascendingOrder([1, 5, 2, 3, 4]);
 
+function reverseAlpha(arr) {
+  return arr.sort(function(a, b) {
+    return a === b ? 0 : a < b ? 1 : -1;
+  });
+}
+reverseAlpha(['l', 'h', 'z', 'b', 's']);
+// This would return the value ['z', 's', 'l', 'h', 'b'].
+
+function alphabeticalOrder(arr) {
+  // Only change code below this line
+  return arr.sort(function(a,b) {
+    return a < b ? -1 : 1;
+  });
+
+  // Only change code above this line
+}
+alphabeticalOrder(["a", "d", "c", "a", "z", "g"]);
+// JavaScript's default sorting method is by string Unicode point value, which may return unexpected results. Therefore, it is encouraged to provide a callback function to specify how to sort the array items. When such a callback function, normally called compareFunction, is supplied, the array elements are sorted according to the return value of the compareFunction: If compareFunction(a,b) returns a value less than 0 for two elements a and b, then a will come before b. If compareFunction(a,b) returns a value greater than 0 for two elements a and b, then b will come before a. If compareFunction(a,b) returns a value equal to 0 for two elements a and b, then a and b will remain unchanged.
+
+
+
+// Use the sort method in the nonMutatingSort function to sort the elements of an array in ascending order. The function should return a new array, and not mutate the globalArray variable.
+var globalArray = [5, 6, 3, 2, 9];
+function nonMutatingSort(arr) {
+  // Only change code below this line
+  let newArr = [];
+  newArr = newArr.concat(arr);
+
+  return newArr.sort(function(a,b) {
+    return a - b;
+  });
+  // Only change code above this line
+}
+nonMutatingSort(globalArray);
+
+
+
+var str = "Hello World";
+var bySpace = str.split(" ");
+
+var otherString = "How9are7you2today";
+var byDigits = otherString.split(/\d/);
+// bySpace would have the value ["Hello", "World"] and byDigits would have the value ["How", "are", "you", "today"].
+
+// Use the split method inside the splitify function to split str into an array of words. The function should return the array. Note that the words are not always separated by spaces, and the array should not contain punctuation.
+function splitify(str) {
+  // Only change code below this line
+  // To split a str on any run of non-word characters I.e. Not A-Z, 0-9, and underscore.
+  let newStr = str.split(/\W+/);
+  return newStr;
+
+  // Only change code above this line
+}
+splitify("Hello World,I-am code");
