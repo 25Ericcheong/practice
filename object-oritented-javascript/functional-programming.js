@@ -507,3 +507,42 @@ function checkPositive(arr) {
   // Only change code above this line
 }
 console.log(checkPositive([1, 2, 3, -4, 5]));
+
+
+
+// Use the some method inside the checkPositive function to check if any element in arr is positive. The function should return a Boolean value.
+function checkPositive(arr) {
+  // Only change code below this line
+  return arr.some(function(currentValue) {
+    return currentValue > 0;
+  });
+
+  // Only change code above this line
+}
+checkPositive([1, 2, 3, -4, 5]);
+
+
+
+// Introduction to Currying and Partial Application
+function add(x) {
+  // Only change code below this line
+  return function(y) {
+    return function(z) {
+      return x + y + z;
+    }
+  }
+
+  // Only change code above this line
+}
+add(10)(20)(30);
+
+// This is useful in your program if you can't supply all the arguments to a function at one time. You can save each function call into a variable, which will hold the returned function reference that takes the next argument when it's available.
+var funcForY = add(1)(2);
+console.log(funcForY(3)); // 6
+
+// Similarly, partial application can be described as applying a few arguments to a function at a time and returning another function that is applied to more arguments
+function impartial(x, y, z) {
+  return x + y + z;
+}
+var partialFn = impartial.bind(this, 1, 2);
+partialFn(10); // 13
