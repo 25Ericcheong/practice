@@ -110,3 +110,22 @@ function whatIsInAName(collection, source) {
 }
 whatIsInAName([{ "apple": 1, "bat": 2 }, { "bat": 2 }, { "apple": 1, "bat": 2, "cookie": 2 }], { "apple": 1, "bat": 2 })
 // whatIsInAName([{ "apple": 1, "bat": 2 }, { "bat": 2 }, { "apple": 1, "bat": 2, "cookie": 2 }], { "apple": 1, "bat": 2 }) should return [{ "apple": 1, "bat": 2 }, { "apple": 1, "bat": 2, "cookie": 2 }].
+
+
+
+function spinalCase(str) {
+  return str
+
+    .split(/\s|_|(?=[A-Z])/)
+    .join("-")
+    .toLowerCase();
+    // Split the string at one of the following conditions (converted
+    // to an array)
+    // a whitespace character [\s] is encountered
+    // underscore character [_] is encountered
+    // or is followed by an uppercase letter [(?=[A-Z])]
+    // Join the array using a hyphen (-)
+    // Lowercase the whole resulting string
+}
+spinalCase("thisIsSpinalTap")
+// spinalCase('This Is Spinal Tap');
