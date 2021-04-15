@@ -245,3 +245,40 @@ function fearNotLetter(str) {
 }
 
 fearNotLetter("abce");
+
+
+
+// Sorted Union
+// Write a function that takes two or more arrays and returns a new array of unique values in the order of the original provided arrays.
+
+// In other words, all values present from all arrays should be included in their original order, but with no duplicates in the final array.
+
+// The unique numbers should be sorted by their original order, but the final array should not be sorted in numerical order.
+
+// Check the assertion tests for examples.
+function uniteUnique(arr) {
+  let store = [];
+
+  for (let i = 0; i < arguments.length; i++) {
+    for (let j = 0; j < arguments[i].length; j++) {
+      let num = arguments[i][j];
+
+      if (!store.includes(num)) {
+        store.push(num)
+      }
+    }
+  }
+
+  // if wanted array to be sorted in ascending order
+  // if a-b is < 0, then a will come first, if not then b will come next
+  // store.sort(function(a, b){
+  //   return a-b
+  //   })
+  return store;
+}
+
+console.log(uniteUnique([1, 3, 2], [5, 2, 1, 4], [2, 1]));
+
+
+
+
