@@ -358,3 +358,48 @@ function isPrime(num) {
 }
 
 sumPrimes(10);
+
+
+
+// Smallest Common Multiple
+// Find the smallest common multiple of the provided parameters that can be evenly divided by both, as well as by all sequential numbers in the range between these parameters.
+
+// The range will be an array of two numbers that will not necessarily be in numerical order.
+
+// For example, if given 1 and 3, find the smallest common multiple of both 1 and 3 that is also evenly divisible by all numbers between 1 and 3. The answer here would be 6.
+function smallestCommons(arr) {
+	//order our array so we know which number is smallest and which is largest
+	var sortedArr = arr.sort(sortNumber),
+	//the smallest common multiple that leaves no remainder when divided by all the numbers in the rang
+	smallestCommon = 0,
+	//smallest multiple will always be the largest number * 1;
+	multiple = sortedArr[1];
+
+	while(smallestCommon === 0) {
+		//check all numbers in our range
+		for(var i = sortedArr[0]; i <= sortedArr[1]; i++ ){
+			if(multiple % i !== 0 ){
+				//if we find even one value between our set that is not perfectly divisible, we can skip to the next multiple
+				break;
+			}
+
+			//if we make it all the way to the last value (sortedArr[1]) then we know that this multiple was perfectly divisible into all values in the range
+			if(i == sortedArr[1]){
+				smallestCommon = multiple;
+			}
+
+		}
+
+		//move to the next multiple, we can just add the highest number.
+		multiple += sortedArr[1];
+	}
+
+	console.log(smallestCommon);
+	return smallestCommon;
+}
+
+function sortNumber(a, b) {
+    return a - b;
+}
+
+smallestCommons([5,1]);
