@@ -54,6 +54,7 @@ ReactDOM.render(JSX5, document.getElementById('self_closing_jsx'));
 
 
 // creating React component with the use of JavaScript function
+// statless functional component
 const MyComponent = function() {
   return (
     <div>
@@ -84,3 +85,268 @@ ReactDOM.render(Component.render(), document.getElementById('es6_component_jsx')
 
 
 
+// composing multiple react components together
+// have a parent component that renders components as children
+const ChildComponent = () => {
+  return (
+    <div>
+      <p>I am the child</p>
+    </div>
+  );
+};
+
+class ParentComponent extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+  render() {
+    return (
+      <div>
+        <h1>I am the parent</h1>
+        <ChildComponent />
+      </div>
+    );
+  }
+};
+let ParentChild = new ParentComponent();
+ReactDOM.render(ParentChild.render(), document.getElementById('parent_child_component_jsx'));
+
+
+
+// render nested components
+const TypesOfFruit = () => {
+  return (
+    <div>
+      <h2>Fruits:</h2>
+      <ul>
+        <li>Apples</li>
+        <li>Blueberries</li>
+        <li>Strawberries</li>
+        <li>Bananas</li>
+      </ul>
+    </div>
+  );
+};
+
+const Fruits = () => {
+  return (
+    <div>
+      <TypesOfFruit/>
+    </div>
+  );
+};
+
+class TypesOfFood extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
+  render() {
+    return (
+      <div>
+        <h1>Types of Food:</h1>
+        <Fruits/>
+      </div>
+    );
+  }
+};
+let Food = new TypesOfFood();
+ReactDOM.render(Food.render(), document.getElementById('nested_component_jsx'));
+
+
+
+// compose react components
+const Citrus = () => {
+  return (
+    <div>
+      <h2>Citrus:</h2>
+      <ul>
+        <li>Lemon</li>
+        <li>Lime</li>
+        <li>Orange</li>
+        <li>Grapefruit</li>
+      </ul>
+    </div>
+  );
+};
+
+const NonCitrus = () => {
+  return (
+    <div>
+      <h2>Non-Citrus:</h2>
+      <ul>
+        <li>Apples</li>
+        <li>Blueberries</li>
+        <li>Strawberries</li>
+        <li>Bananas</li>
+      </ul>
+    </div>
+  );
+};
+
+const Vegetables = () => {
+  return (
+    <div>
+      <h1>Non-Vegetables:</h1>
+      <ul>
+        <li>Brussel Sprouts</li>
+        <li>Broccoli</li>
+        <li>Squash</li>
+      </ul>
+    </div>
+  );
+};
+
+class Fruitss extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+  render() {
+    return (
+      <div>
+        <h2>Fruits:</h2>
+        <Citrus/>
+        <NonCitrus/>
+      </div>
+    );
+  }
+};
+
+class TypesOfFoods extends React.Component {
+  constructor(props) {
+     super(props);
+  }
+  render() {
+    return (
+      <div>
+        <h1>Types of Food:</h1>
+        <Fruitss />
+        <Vegetables />
+      </div>
+    );
+  }
+};
+let manyFood = new TypesOfFoods();
+ReactDOM.render(manyFood.render(), document.getElementById('bigger_nested_component_jsx'));
+
+
+
+// pass props to a stateless functional component
+// stateless function
+const CurrentDate = (props) => {
+  return (
+    <div>
+      <p>The current date is: {props.date}</p>
+    </div>
+  );
+};
+
+// parent class created with es6
+class Calendar extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+  render() {
+    return (
+      <div>
+        <h3>What date is it?</h3>
+        <CurrentDate date={Date()}/>
+      </div>
+    );
+  }
+};
+let calendar = new Calendar();
+ReactDOM.render(calendar.render(), document.getElementById('calendar_props_component_jsx'));
+
+
+
+// passing array as props
+const List = (props) => {
+  return <p>{props.tasks.join(", ")}</p>
+};
+
+class ToDo extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+  render() {
+    return (
+      <div>
+        <h1>To Do Lists</h1>
+        <h2>Today</h2>
+        <List tasks={['Studying', 'Running']}/>
+        <h2>Tomorrow</h2>
+        <List tasks={['Cooling', 'Playing', 'Sleeping']}/>
+      </div>
+    );
+  }
+};
+let toDoStuff = new ToDo();
+ReactDOM.render(toDoStuff.render(), document.getElementById('todo_props_array_component_jsx'));
+
+
+
+// using default props
+const ShoppingCart = (props) => {
+  return (
+    <div>
+      <h1>Shopping Cart Component</h1>
+      <p>{props.items}</p>
+    </div>
+  )
+};
+
+ShoppingCart.defaultProps = {
+  items : 0
+}
+
+ReactDOM.render(<ShoppingCart/>, document.getElementById('default_props_component_jsx'));
+
+
+
+// override default props
+const Items = (props) => {
+  return <h1>Current Quantity of Items in Cart: {props.quantity}</h1>
+}
+
+Items.defaultProps = {
+  quantity: 0
+}
+
+class ShoppingCarts extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+  render() {
+    return <Items quantity={10}/>
+  }
+};
+let shopping = new ShoppingCarts();
+ReactDOM.render(shopping.render(), document.getElementById('override_default_props_component_jsx'));
+
+
+
+// use proptypes to define props you expect
+const Itemss = (props) => {
+  return <h1>Current Quantity of Items in Cart: {props.quantity}</h1>
+};
+
+// probably need to install npm
+Itemss.propTypes = {
+  quantity: PropTypes.number.isRequired
+}
+
+Itemss.defaultProps = {
+  quantity: 0
+};
+
+class ShoppingCartsss extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+  render() {
+    return <Itemss quantity={10}/>
+  }
+};
+let shopCart = new ShoppingCartsss();
+ReactDOM.render(shopCart.render(), document.getElementById('set_proptype_jsx'));
