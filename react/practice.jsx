@@ -80,8 +80,8 @@ class OtherComponent extends React.Component {
     );
   }
 };
-let Component = new OtherComponent();
-ReactDOM.render(Component.render(), document.getElementById('es6_component_jsx'));
+let component = new OtherComponent();
+ReactDOM.render(component.render(), document.getElementById('es6_component_jsx'));
 
 
 
@@ -108,8 +108,8 @@ class ParentComponent extends React.Component {
     );
   }
 };
-let ParentChild = new ParentComponent();
-ReactDOM.render(ParentChild.render(), document.getElementById('parent_child_component_jsx'));
+let parentChild = new ParentComponent();
+ReactDOM.render(parentChild.render(), document.getElementById('parent_child_component_jsx'));
 
 
 
@@ -350,3 +350,62 @@ class ShoppingCartsss extends React.Component {
 };
 let shopCart = new ShoppingCartsss();
 ReactDOM.render(shopCart.render(), document.getElementById('set_proptype_jsx'));
+
+
+
+// accessing props using this.props
+class ReturnTempPassword extends React.Component {
+  constructor(props) {
+    super(props);
+
+  }
+  render() {
+    return (
+        <div>
+            <p>Your temporary password is: <strong>{this.props.tempPassword}</strong></p>
+        </div>
+    );
+  }
+};
+
+class ResetPassword extends React.Component {
+  constructor(props) {
+    super(props);
+
+  }
+  render() {
+    return (
+        <div>
+          <h2>Reset Password</h2>
+          <h3>We've generated a new temporary password for you.</h3>
+          <h3>Please reset this password from your account settings ASAP.</h3>
+          <ReturnTempPassword tempPassword={'12345678'}/>
+        </div>
+    );
+  }
+};
+let password = new ResetPassword();
+ReactDOM.render(password.render(), document.getElementById('access_password_jsx'));
+
+
+
+class StatefulComponent extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      name: 'eric'
+    }
+  }
+  render() {
+    return (
+      <div>
+        <h1>{this.state.name}</h1>
+      </div>
+    );
+  }
+};
+let stateful = new StatefulComponent();
+ReactDOM.render(stateful.render(), document.getElementById('stateful_component_jsx'));
+
+
+
