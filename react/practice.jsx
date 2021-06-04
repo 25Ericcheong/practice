@@ -41,3 +41,46 @@ ReactDOM.render(JSX4, document.getElementById('classname_jsx_element'));
 
 
 
+// self-closing JSX tags
+const JSX5 = (
+  <div>
+    <h2>Welcome to React!</h2> <br/>
+    <p>Be sure to close all tags!</p>
+    <hr/>
+  </div>
+);
+ReactDOM.render(JSX5, document.getElementById('self_closing_jsx'));
+
+
+
+// creating React component with the use of JavaScript function
+const MyComponent = function() {
+  return (
+    <div>
+      My first stateless component
+    </div>
+  );
+}
+ReactDOM.render(MyComponent(), document.getElementById('stateless_component_jsx'));
+
+
+
+// creating react component with ES6 class syntax
+// OtherComponent extends React.Component class, so it has access to many useful React features like local state and lifecycle hooks
+class OtherComponent extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+  render() {
+    return (
+      <div>
+        <p>My first es6 component</p>
+      </div>
+    );
+  }
+};
+let Component = new OtherComponent();
+ReactDOM.render(Component.render(), document.getElementById('es6_component_jsx'));
+
+
+
