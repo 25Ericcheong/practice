@@ -389,6 +389,7 @@ ReactDOM.render(password.render(), document.getElementById('access_password_jsx'
 
 
 
+// creating a stateful component
 class StatefulComponent extends React.Component {
   constructor(props) {
     super(props);
@@ -409,3 +410,55 @@ ReactDOM.render(stateful.render(), document.getElementById('stateful_component_j
 
 
 
+// render state in UI
+class MyComponentEg extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      name: 'freeCodeCamp'
+    }
+  }
+  render() {
+    // since can write JavaScript directly in this part of code, do not need to enclose reference in curly braces
+    const name = this.state.name;
+    return (
+      <div>
+        <h1>{name}</h1>
+      </div>
+    );
+  }
+};
+let statefulEg = new MyComponentEg();
+ReactDOM.render(statefulEg.render(), document.getElementById('statefuls_component_jsx'));
+
+
+
+// changing state of a component with this.setState
+class MyComponentButton extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      name: 'Initial State'
+    };
+
+    // binds function to component I think
+    this.handleClick = this.handleClick.bind(this);
+  }
+
+  handleClick() {
+    this.setState({
+      name: 'React Rocks!'
+    })
+  }
+
+  render() {
+    return (
+      <div>
+        <button onClick={this.handleClick}>Click Me</button>
+        <h1>{this.state.name}</h1>
+      </div>
+    );
+  }
+};
+let stateChange = new MyComponentButton();
+ReactDOM.render(stateChange.render(), document.getElementById('state_change_component_jsx'));
