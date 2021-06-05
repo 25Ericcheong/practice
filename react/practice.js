@@ -80,8 +80,7 @@ class OtherComponent extends React.Component {
     );
   }
 };
-let component = new OtherComponent();
-ReactDOM.render(component.render(), document.getElementById('es6_component_jsx'));
+ReactDOM.render(<OtherComponent />, document.getElementById('es6_component_jsx'));
 
 
 
@@ -108,8 +107,7 @@ class ParentComponent extends React.Component {
     );
   }
 };
-let parentChild = new ParentComponent();
-ReactDOM.render(parentChild.render(), document.getElementById('parent_child_component_jsx'));
+ReactDOM.render(<ParentComponent/>, document.getElementById('parent_child_component_jsx'));
 
 
 
@@ -150,8 +148,7 @@ class TypesOfFood extends React.Component {
     );
   }
 };
-let Food = new TypesOfFood();
-ReactDOM.render(Food.render(), document.getElementById('nested_component_jsx'));
+ReactDOM.render(<TypesOfFood/>, document.getElementById('nested_component_jsx'));
 
 
 
@@ -226,8 +223,7 @@ class TypesOfFoods extends React.Component {
     );
   }
 };
-let manyFood = new TypesOfFoods();
-ReactDOM.render(manyFood.render(), document.getElementById('bigger_nested_component_jsx'));
+ReactDOM.render(<TypesOfFood/>, document.getElementById('bigger_nested_component_jsx'));
 
 
 
@@ -255,8 +251,7 @@ class Calendar extends React.Component {
     );
   }
 };
-let calendar = new Calendar();
-ReactDOM.render(calendar.render(), document.getElementById('calendar_props_component_jsx'));
+ReactDOM.render(<Calendar/>, document.getElementById('calendar_props_component_jsx'));
 
 
 
@@ -281,8 +276,7 @@ class ToDo extends React.Component {
     );
   }
 };
-let toDoStuff = new ToDo();
-ReactDOM.render(toDoStuff.render(), document.getElementById('todo_props_array_component_jsx'));
+ReactDOM.render(<ToDo/>, document.getElementById('todo_props_array_component_jsx'));
 
 
 
@@ -299,7 +293,6 @@ const ShoppingCart = (props) => {
 ShoppingCart.defaultProps = {
   items : 0
 }
-
 ReactDOM.render(<ShoppingCart/>, document.getElementById('default_props_component_jsx'));
 
 
@@ -321,8 +314,7 @@ class ShoppingCarts extends React.Component {
     return <Items quantity={10}/>
   }
 };
-let shopping = new ShoppingCarts();
-ReactDOM.render(shopping.render(), document.getElementById('override_default_props_component_jsx'));
+ReactDOM.render(<ShoppingCarts/>, document.getElementById('override_default_props_component_jsx'));
 
 
 
@@ -348,8 +340,7 @@ class ShoppingCartsss extends React.Component {
     return <Itemss quantity={10}/>
   }
 };
-let shopCart = new ShoppingCartsss();
-ReactDOM.render(shopCart.render(), document.getElementById('set_proptype_jsx'));
+ReactDOM.render(<ShoppingCartsss/>, document.getElementById('set_proptype_jsx'));
 
 
 
@@ -384,8 +375,7 @@ class ResetPassword extends React.Component {
     );
   }
 };
-let password = new ResetPassword();
-ReactDOM.render(password.render(), document.getElementById('access_password_jsx'));
+ReactDOM.render(<ResetPassword/>, document.getElementById('access_password_jsx'));
 
 
 
@@ -405,8 +395,7 @@ class StatefulComponent extends React.Component {
     );
   }
 };
-let stateful = new StatefulComponent();
-ReactDOM.render(stateful.render(), document.getElementById('stateful_component_jsx'));
+ReactDOM.render(<StatefulComponent/>, document.getElementById('stateful_component_jsx'));
 
 
 
@@ -428,8 +417,7 @@ class MyComponentEg extends React.Component {
     );
   }
 };
-let statefulEg = new MyComponentEg();
-ReactDOM.render(statefulEg.render(), document.getElementById('statefuls_component_jsx'));
+ReactDOM.render(<MyComponentEg/>, document.getElementById('statefuls_component_jsx'));
 
 
 
@@ -437,6 +425,7 @@ ReactDOM.render(statefulEg.render(), document.getElementById('statefuls_componen
 class MyComponentButton extends React.Component {
   constructor(props) {
     super(props);
+
     this.state = {
       name: 'Initial State'
     };
@@ -451,6 +440,7 @@ class MyComponentButton extends React.Component {
     })
   }
 
+
   render() {
     return (
       <div>
@@ -460,5 +450,5 @@ class MyComponentButton extends React.Component {
     );
   }
 };
-let stateChange = new MyComponentButton();
-ReactDOM.render(stateChange.render(), document.getElementById('state_change_component_jsx'));
+
+ReactDOM.render(<MyComponentButton/>, document.getElementById('state_change_component_jsx'));
