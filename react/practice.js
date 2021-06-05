@@ -430,7 +430,8 @@ class MyComponentButton extends React.Component {
       name: 'Initial State'
     };
 
-    // binds function to component I think
+    // binds function to component
+    // ensures defined method will be allowed to access 'this'
     this.handleClick = this.handleClick.bind(this);
   }
 
@@ -450,5 +451,425 @@ class MyComponentButton extends React.Component {
     );
   }
 };
-
 ReactDOM.render(<MyComponentButton/>, document.getElementById('state_change_component_jsx'));
+
+
+
+// use state to toggle an element
+// use setState and pass a function that can access previous state and props
+class MyVisibibleComponent extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      visibility: false
+    };
+
+    this.toggleVisibility = this.toggleVisibility.bind(this);
+  }
+
+  toggleVisibility() {
+    this.setState(state => ({
+      visibility: !state.visibility
+    }))
+  }
+  
+  render() {
+    if (this.state.visibility) {
+      return (
+        <div>
+          <button onClick={this.toggleVisibility}>Click Me</button>
+          <h1>Now you see me!</h1>
+        </div>
+      );
+    } else {
+      return (
+        <div>
+          <button onClick={this.toggleVisibility}>Click Me</button>
+          <h1>I don't see you?</h1>
+        </div>
+      );
+    }
+  }
+}
+ReactDOM.render(<MyVisibibleComponent/>, document.getElementById('toggle_states_component_jsx'));
+
+
+
+// simple counter
+class Counter extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      count: 0
+    };
+    this.decrement = this.decrement.bind(this);
+    this.increment = this.increment.bind(this);
+    this.reset = this.reset.bind(this);
+  }
+
+  increment() {
+    this.setState(state => ({
+      count: state.count + 1
+    }))
+  }
+
+  decrement() {
+    this.setState(state => ({
+      count: state.count - 1
+    }))
+  }
+
+  reset() {
+    this.setState({
+      count: 0
+    })
+  }
+
+  render() {
+    return (
+      <div>
+        <button className='inc' onClick={this.increment}>Increment!</button>
+        <button className='dec' onClick={this.decrement}>Decrement!</button>
+        <button className='reset' onClick={this.reset}>Reset</button>
+        <h1>Current Count: {this.state.count}</h1>
+      </div>
+    );
+  }
+};
+ReactDOM.render(<Counter/>, document.getElementById('counter_component_jsx'));
+
+
+
+// creating controller input that updates as input is being inputted
+class ControlledInput extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      input: ''
+    };
+    this.handleChange = this.handleChange.bind(this);
+  }
+
+  // event object that contains string of text from input element
+  handleChange(event) {
+    this.setState({
+      input: event.target.value
+    })
+  }
+
+  render() {
+    return (
+      <div>
+        <input 
+        value={this.state.input}
+        onChange={this.handleChange}
+        />
+        <h4>Controlled Input:</h4>
+        <p>{this.state.input}</p>
+      </div>
+    );
+  }
+};
+ReactDOM.render(<ControlledInput/>, document.getElementById('controlled_input_component_jsx'));
+
+
+
+// creating a controlled form
+class MyForm extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      input: '',
+      submit: ''
+    };
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+  
+  handleChange(event) {
+    this.setState({
+      input: event.target.value
+    });
+  }
+
+  handleSubmit(event) {
+    event.preventDefault()
+    this.setState({
+      submit: this.state.input
+    })
+  }
+
+  render() {
+    return (
+      <div>
+        <form onSubmit={this.handleSubmit}>
+          <input value={this.state.input}
+        onChange={this.handleChange}/>
+          <button type='submit'>Submit!</button>
+        </form>
+        <h1>{this.state.submit}</h1>
+      </div>
+    );
+  }
+}
+ReactDOM.render(<MyForm/>, document.getElementById('controlled_form_component_jsx'));
+
+
+
+// passing state as props to child components
+class SimpleApp extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      name: 'CamperBot'
+    }
+  }
+  render() {
+    return (
+       <div>
+         <Navbar name={this.state.name}/>
+       </div>
+    );
+  }
+};
+
+class Navbar extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+  render() {
+    return (
+    <div>
+      <h1>Hello, my name is: {this.props.name}</h1>
+    </div>
+    );
+  }
+};
+ReactDOM.render(<SimpleApp/>, document.getElementById('pass_state_as_props_component_jsx'));
+
+
+
+// pass a callback as props
+// allowing child components to interact with parent components
+// Once you are finished you will be able to type in the input field in the GetInput component, which then calls the handler method in its parent via props. This updates the input in the state of the parent, which is passed as props to both children. Observe how the data flows between the components and how the single source of truth remains the state of the parent component.
+class Application extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      inputValue: ''
+    }
+    this.handleChange = this.handleChange.bind(this);
+  }
+
+  handleChange(event) {
+    this.setState({
+      inputValue: event.target.value
+    });
+  }
+
+  render() {
+    return (
+       <div>
+        <GetInput input={this.state.inputValue} handleChange={this.handleChange}/>
+        <RenderInput input={this.state.inputValue} />
+       </div>
+    );
+  }
+};
+
+class GetInput extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+  render() {
+    return (
+      <div>
+        <h3>Get Input:</h3>
+        <input
+          value={this.props.input}
+          onChange={this.props.handleChange}/>
+      </div>
+    );
+  }
+};
+
+class RenderInput extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+  render() {
+    return (
+      <div>
+        <h3>Input Render:</h3>
+        <p>{this.props.input}</p>
+      </div>
+    );
+  }
+};
+ReactDOM.render(<Application/>, document.getElementById('pass_callback_as_props_component_jsx'));
+
+
+
+// use lifecycle method componentDidMount
+// best practice with React is to place API calls or any calls to your server in lifecycle method called componentDidMount()
+class LifeCycle extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      activeUsers: 0
+    };
+  }
+
+  // mock API, sets state after 1s to stimulate calling a server to retrieve data
+  componentDidMount() {
+    setTimeout(() => {
+      this.setState(state => ({
+        activeUsers: 1
+      }));
+    }, 1000);
+  }
+
+  render() {
+    return (
+      <div>
+        {/* Change code below this line */}
+        <h1>Active Users: {this.state.activeUsers}</h1>
+        {/* Change code above this line */}
+      </div>
+    );
+  }
+}
+ReactDOM.render(<LifeCycle/>, document.getElementById('lifecycle_component_jsx'));
+
+
+
+// adding event listeners
+class EventListeners extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      message: ''
+    };
+    this.handleEnter = this.handleEnter.bind(this);
+    this.handleKeyPress = this.handleKeyPress.bind(this);
+  }
+
+  componentDidMount() {
+    document.addEventListener('keydown', this.handleKeyPress)
+  }
+
+  // used before component unmounts / destroyed. Used to clean up before component is destroyed.
+  componentWillUnmount() {
+    document.removeEventListener('keydown', this.handleKeyPress);
+  }
+
+  handleEnter() {
+    this.setState((state) => ({
+      message: state.message + 'You pressed the enter key! '
+    }));
+  }
+
+  handleKeyPress(event) {
+    if (event.keyCode === 13) {
+      this.handleEnter();
+    }
+  }
+
+  render() {
+    return (
+      <div>
+        <h1>Event listener - press enter </h1>
+        <h1>{this.state.message}</h1>
+      </div>
+    );
+  }
+};
+ReactDOM.render(<EventListeners/>, document.getElementById('event_listener_component_jsx'));
+
+
+
+// optimize re-renders with shouldComponentUpdate
+// lifecycle method that can be used when child components receive new state or props and declare specifically if components should update or not.
+// useful to optimize performance. Default behavior is component re-renders when it receives new props even if props did not change.
+// can use shouldComponentUpdate to prevent this by comparing props
+class OnlyEvens extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
+  // component will only render when prop is an even value
+  shouldComponentUpdate(nextProps, nextState) {
+    console.log('Should I update?');
+    if (nextProps.value % 2 == 0) {
+      return true
+    }
+    return false
+  }
+
+  componentDidUpdate() {
+    console.log('Component re-rendered.');
+  }
+
+  render() {
+    return <h1>{this.props.value}</h1>;
+  }
+}
+
+class Controller extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      value: 0
+    };
+    this.addValue = this.addValue.bind(this);
+  }
+
+  addValue() {
+    this.setState(state => ({
+      value: state.value + 1
+    }));
+  }
+  
+  render() {
+    return (
+      <div>
+        <button onClick={this.addValue}>Add</button>
+        <OnlyEvens value={this.state.value} />
+      </div>
+    );
+  }
+}
+ReactDOM.render(<Controller/>, document.getElementById('optimize_component_jsx'));
+
+
+
+// inline styles
+class Colorful extends React.Component {
+  render() {
+    return (
+      <div style={{color: 'red', fontSize: 72}}>Big Red</div>
+    );
+  }
+};
+ReactDOM.render(<Colorful/>, document.getElementById('inline_style_component_jsx'));
+
+
+
+// adding a large block of styles
+// can code in this format to organize styles neatly
+const styles = {
+  color: 'purple',
+  fontSize: 40,
+  border: "2px solid purple",
+};
+
+// Change code above this line
+class Colorfuls extends React.Component {
+  render() {
+
+    return (
+      <div style={styles}>Style Me!</div>
+    );
+  }
+};
+ReactDOM.render(<Colorfuls/>, document.getElementById('inline_styles_component_jsx'));
