@@ -54,7 +54,7 @@ ReactDOM.render(JSX5, document.getElementById('self_closing_jsx'));
 
 
 // creating React component with the use of JavaScript function
-// statless functional component
+// stateless functional component
 const MyComponent = function() {
   return (
     <div>
@@ -732,9 +732,7 @@ class LifeCycle extends React.Component {
   render() {
     return (
       <div>
-        {/* Change code below this line */}
         <h1>Active Users: {this.state.activeUsers}</h1>
-        {/* Change code above this line */}
       </div>
     );
   }
@@ -873,3 +871,254 @@ class Colorfuls extends React.Component {
   }
 };
 ReactDOM.render(<Colorfuls/>, document.getElementById('inline_styles_component_jsx'));
+
+
+
+// use advanced javascript in React Render method
+// You can also write JavaScript directly in your render methods, before the return statement, without inserting it inside of curly braces. This is because it is not yet within the JSX code. When you want to use a variable later in the JSX code inside the return statement, you place the variable name inside curly braces.
+const inputStyle = {
+  width: 235,
+  margin: 5
+};
+
+class MagicEightBall extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      userInput: '',
+      randomIndex: ''
+    };
+    this.ask = this.ask.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+  }
+  ask() {
+    if (this.state.userInput) {
+      this.setState({
+        randomIndex: Math.floor(Math.random() * 20),
+        userInput: ''
+      });
+    }
+  }
+  handleChange(event) {
+    this.setState({
+      userInput: event.target.value
+    });
+  }
+  render() {
+    const possibleAnswers = [
+      'It is certain',
+      'It is decidedly so',
+      'Without a doubt',
+      'Yes, definitely',
+      'You may rely on it',
+      'As I see it, yes',
+      'Outlook good',
+      'Yes',
+      'Signs point to yes',
+      'Reply hazy try again',
+      'Ask again later',
+      'Better not tell you now',
+      'Cannot predict now',
+      'Concentrate and ask again',
+      "Don't count on it",
+      'My reply is no',
+      'My sources say no',
+      'Most likely',
+      'Outlook not so good',
+      'Very doubtful'
+    ];
+    const answer = possibleAnswers[this.state.randomIndex];
+    return (
+      <div>
+        <input
+          type='text'
+          value={this.state.userInput}
+          onChange={this.handleChange}
+          style={inputStyle}
+        />
+        <br />
+        <button onClick={this.ask}>Ask the Magic Eight Ball!</button>
+        <br />
+        <h3>Answer:</h3>
+        <p>
+          {answer}
+        </p>
+      </div>
+    );
+  }
+}
+ReactDOM.render(<MagicEightBall/>, document.getElementById('javascript_in_render_component_jsx'));
+
+
+
+// render with an if-else condition
+class IfRenderComponent extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      display: true
+    }
+    this.toggleDisplay = this.toggleDisplay.bind(this);
+  }
+  toggleDisplay() {
+    this.setState((state) => ({
+      display: !state.display
+    }));
+  }
+  render() {
+    if (this.state.display) {
+      return (
+        <div>
+          <button onClick={this.toggleDisplay}>Toggle Display</button>
+          <h1>Displayed!</h1>
+        </div>
+      );
+    } else {
+      return (
+        <div>
+          <button onClick={this.toggleDisplay}>Toggle Display</button>
+        </div>
+      );
+    }
+  }
+};
+ReactDOM.render(<IfRenderComponent/>, document.getElementById('if_render_component_jsx'));
+
+
+
+// Use && for a More Concise Conditional
+// The if/else statements worked in the last challenge, but there's a more concise way to achieve the same result. Imagine that you are tracking several conditions in a component and you want different elements to render depending on each of these conditions. If you write a lot of else if statements to return slightly different UIs, you may repeat code which leaves room for error. Instead, you can use the && logical operator to perform conditional logic in a more concise way. This is possible because you want to check if a condition is true, and if it is, return some markup
+class IfRenderComponent2 extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      display: true
+    }
+    this.toggleDisplay = this.toggleDisplay.bind(this);
+  }
+  toggleDisplay() {
+    this.setState(state => ({
+      display: !state.display
+    }));
+  }
+  render() {
+    return (
+       <div>
+        {this.state.display == true && <h1>Displayed!</h1>}
+        <button onClick={this.toggleDisplay}>Toggle Display</button>
+       </div>
+    );
+  }
+};
+ReactDOM.render(<IfRenderComponent2/>, document.getElementById('if_render_component2_jsx'));
+
+
+
+// using ternary expression for conditional rendering
+// for reference
+function example() {
+  return condition1 ? value1
+       : condition2 ? value2
+       : condition3 ? value3
+       : value4;
+}
+
+// Equivalent to:
+
+function example() {
+  if (condition1) { return value1; }
+  else if (condition2) { return value2; }
+  else if (condition3) { return value3; }
+  else { return value4; }
+}
+
+const inputStylee = {
+  width: 235,
+  margin: 5
+};
+
+class CheckUserAge extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      input: '',
+      userAge: ''
+    }
+    this.submit = this.submit.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+  }
+  handleChange(e) {
+    this.setState({
+      input: e.target.value,
+      userAge: ''
+    });
+  }
+  submit() {
+    this.setState(state => ({
+      userAge: state.input
+    }));
+  }
+  render() {
+    const buttonOne = <button onClick={this.submit}>Submit</button>;
+    const buttonTwo = <button>You May Enter</button>;
+    const buttonThree = <button>You Shall Not Pass</button>;
+    return (
+      <div>
+        <h3>Enter Your Age to Continue</h3>
+        <input
+          style={inputStylee}
+          type='number'
+          value={this.state.input}
+          onChange={this.handleChange}
+        />
+        <br />
+        {this.state.userAge < 18 && this.state.userAge != '' ? buttonThree 
+        : this.state.userAge >= 18 ? buttonTwo 
+        : buttonOne}
+      </div>
+    );
+  }
+}
+ReactDOM.render(<CheckUserAge/>, document.getElementById('ternary_render_component_jsx'));
+
+
+
+// render conditionally from props
+class Results extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+  render() {
+    // will rendering of You Win or You Lose will depend on the value of prop
+    return <h1> {this.props.fiftyFifty ? 'You Win!' : 'You Lose!'} </h1>;
+  }
+}
+
+class GameOfChance extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      counter: 1
+    };
+    this.handleClick = this.handleClick.bind(this);
+  }
+  handleClick() {
+    this.setState(prevState => {
+      return {
+        counter: prevState.counter + 1
+      }
+    });
+  }
+  render() {
+    // random number between 0 (inclusive) and 1 (exclusive), so if number is larger than 0.5, expression will be true
+    const expression = Math.random() >= .5; 
+    return (
+      <div>
+        <button onClick={this.handleClick}>Play Again</button>
+        <Results fiftyFifty = {expression}/>
+        <p>{'Turn: ' + this.state.counter}</p>
+      </div>
+    );
+  }
+}
+ReactDOM.render(<GameOfChance/>, document.getElementById('render_conditionally_from_props_component_jsx'));
