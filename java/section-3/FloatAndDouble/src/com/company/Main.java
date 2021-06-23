@@ -18,6 +18,6 @@ public class Main {
         float myFloatValue = 5.25f;
         double myDoubleValue = 5d;
 
-
+//        test
     }
 }
