@@ -22,6 +22,7 @@ public class Main {
 
 
         // Coding exercise 5
-        
+        System.out.println(DecimalComparator.areEqualByThreeDecimalPlaces(3.174
+                , 3.175));
     }
 }
