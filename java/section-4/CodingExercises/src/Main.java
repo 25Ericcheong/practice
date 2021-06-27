@@ -11,5 +11,17 @@ public class Main {
 
         // Coding exercise 2
         MegaBytesConverter.printMegaBytesAndKiloBytes(5000);
+
+
+        // Coding exercise 3
+        System.out.println(BarkingDog.shouldWakeUp(true, -1));
+
+
+        // Coding exercise 4
+        System.out.println(LeapYear.isLeapYear(1800));
+
+
+        // Coding exercise 5
+        
     }
 }
