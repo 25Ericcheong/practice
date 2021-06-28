@@ -32,5 +32,22 @@ public class Main {
 
         // Coding exercise 7
         System.out.println(TeenNumberChecker.hasTeen(22, 23, 24));
+
+
+        // Coding exercise 8
+        System.out.println(AreaCalculator.area(5.0));
+        System.out.println(AreaCalculator.area(5.0, 4.0));
+
+
+        // Coding exercise 9
+        MinutesToYearsDaysCalculator.printYearsAndDays(561600);
+
+
+        // Coding exercise 10
+        IntEqualityPrinter.printEqual(1, 1, 2);
+
+
+        // Coding exercise 11
+        System.out.println(PlayingCat.isCatPlaying(false, 25));
     }
 }
