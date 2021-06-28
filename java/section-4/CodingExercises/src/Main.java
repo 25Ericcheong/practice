@@ -24,5 +24,13 @@ public class Main {
         // Coding exercise 5
         System.out.println(DecimalComparator.areEqualByThreeDecimalPlaces(3.174
                 , 3.175));
+
+
+        // Coding exercise 6
+        System.out.println(EqualSumChecker.hasEqualSum(1, -1, 0));
+
+
+        // Coding exercise 7
+        System.out.println(TeenNumberChecker.hasTeen(22, 23, 24));
     }
 }
