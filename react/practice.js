@@ -1141,11 +1141,11 @@ class GateKeeper extends React.Component {
     let inputStyle = {
       border: '1px solid black'
     };
-    // Change code below this line
+
     if (this.state.input.length > 15) inputStyle = {
       border: '3px solid red'
     }  
-    // Change code above this line
+
     return (
       <div>
         <h3>Don't Type Too Much:</h3>
@@ -1159,3 +1159,157 @@ class GateKeeper extends React.Component {
   }
 };
 ReactDOM.render(<GateKeeper/>, document.getElementById('render_css_conditionally_component_state_based_jsx'));
+
+
+
+// Use Array.map() to Dynamically Render Elements
+const textAreaStyles = {
+  width: 235,
+  margin: 5
+};
+
+class MyToDoList extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      userInput: '',
+      toDoList: []
+    }
+
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+  }
+  handleSubmit() {
+    const itemsArray = this.state.userInput.split(',');
+    this.setState({
+      toDoList: itemsArray
+    });
+  }
+  handleChange(e) {
+    this.setState({
+      userInput: e.target.value
+    });
+  }
+  render() {
+
+    const items = this.state.toDoList.map(i => <li>{i}</li>);
+
+    return (
+      <div>
+        <textarea
+          onChange={this.handleChange}
+          value={this.state.userInput}
+          style={textAreaStyles}
+          placeholder='Separate Items With Commas'
+        />
+        <br />
+        <button onClick={this.handleSubmit}>Create List</button>
+        <h1>My "To Do" List:</h1>
+        <ul>{items}</ul>
+      </div>
+    );
+  }
+}
+ReactDOM.render(<MyToDoList/>, document.getElementById('array_map_dynamic_render'));
+
+
+
+// Give Sibling Elements a Unique Key Attribute
+const frontEndFrameworks = [
+  'React',
+  'Angular',
+  'Ember',
+  'Knockout',
+  'Backbone',
+  'Vue'
+];
+
+function Frameworks() {
+  const renderFrameworks = frontEndFrameworks.map((i, index) =>
+    <li key={index}>
+      {i}
+    </li>
+  );
+  return (
+    <div>
+      <h1>Popular Front End JavaScript Frameworks</h1>
+      <ul>
+        {renderFrameworks}
+      </ul>
+    </div>
+  );
+};
+ReactDOM.render(Frameworks(), document.getElementById('array_map_with_key_atr'));
+
+
+
+// Use Array.filter() to Dynamically Filter an Array
+class ArrayFilter extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      users: [
+        {
+          username: 'Jeff',
+          online: true
+        },
+        {
+          username: 'Alan',
+          online: false
+        },
+        {
+          username: 'Mary',
+          online: true
+        },
+        {
+          username: 'Jim',
+          online: false
+        },
+        {
+          username: 'Sara',
+          online: true
+        },
+        {
+          username: 'Laura',
+          online: true
+        }
+      ]
+    };
+  }
+  render() {
+    const usersOnline = this.state.users
+    .filter(user => user.online)
+    .map(filteredUser => filteredUser.username)
+
+    const renderOnline = usersOnline.map((username, index) =>
+      <li key={index}>
+        {username}
+      </li>
+    )
+
+    return (
+      <div>
+        <h1>Current Online Users:</h1>
+        <ul>{renderOnline}</ul>
+      </div>
+    );
+  }
+}
+ReactDOM.render(<ArrayFilter/>, document.getElementById('array_map_filter'));
+
+
+
+// Render React on the Server with renderToString
+// There are two key reasons why rendering on the server may be used in a real world app. First, without doing this, your React apps would consist of a relatively empty HTML file and a large bundle of JavaScript when it's initially loaded to the browser. This may not be ideal for search engines that are trying to index the content of your pages so people can find you. If you render the initial HTML markup on the server and send this to the client, the initial page load contains all of the page's markup which can be crawled by search engines. Second, this creates a faster initial page load experience because the rendered HTML is smaller than the JavaScript code of the entire app. React will still be able to recognize your app and manage it after the initial load.
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+  render() {
+    return <div/>
+  }
+};
+
+// Change code below this line
+ReactDOMServer.renderToString(<App/>)
