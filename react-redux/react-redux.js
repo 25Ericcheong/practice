@@ -19,6 +19,7 @@ class DisplayMessages extends React.Component {
 
 
 // Manage State Locally First
+// https://www.freecodecamp.org/learn/front-end-development-libraries/react-and-redux/manage-state-locally-first
 class DisplayMessages extends React.Component {
   constructor(props) {
     super(props);
@@ -63,3 +64,33 @@ class DisplayMessages extends React.Component {
     );
   }
 };
+
+
+
+// Extract State Logic to Redux
+// https://www.freecodecamp.org/learn/front-end-development-libraries/react-and-redux/extract-state-logic-to-redux
+const ADD = 'ADD';
+const defaultState = [];
+
+const messageReducer = (state = defaultState, action) => {
+  switch (action.type) {
+    case ADD:
+      return [...state, action.message];
+    default:
+      return state;
+  }
+};
+
+function addMessage(message) {
+  return {
+    type: 'ADD',
+    message
+  }
+};
+
+const store = Redux.createStore(messageReducer);
+
+
+
+// Use Provider to Connect Redux to React
+// https://www.freecodecamp.org/learn/front-end-development-libraries/react-and-redux/use-provider-to-connect-redux-to-react
