@@ -286,3 +286,118 @@ console.log(store.getState());
 // In this example, an asynchronous request is simulated with a setTimeout() call. It's common to dispatch an action before initiating any asynchronous behavior so that your application state knows that some data is being requested (this state could display a loading icon, for instance). Then, once you receive the data, you dispatch another action which carries the data as a payload along with information that the action is completed.
 
 // Remember that you're passing dispatch as a parameter to this special action creator. This is what you'll use to dispatch your actions, you simply pass the action directly to dispatch and the middleware takes care of the rest.
+const REQUESTING_DATA = 'REQUESTING_DATA'
+const RECEIVED_DATA = 'RECEIVED_DATA'
+
+const requestingData = () => { return {type: REQUESTING_DATA} }
+const receivedData = (data) => { return {type: RECEIVED_DATA, users: data.users} }
+
+const handleAsync = () => {
+  return function(dispatch) {
+    // Dispatch request action here
+    dispatch(requestingData());
+
+    setTimeout(function() {
+      let data = {
+        users: ['Jeff', 'William', 'Alice']
+      }
+      // Dispatch received data action here
+      dispatch(receivedData(data));
+
+    }, 2500);
+  }
+};
+
+const defaultState = {
+  fetching: false,
+  users: []
+};
+
+const asyncDataReducer = (state = defaultState, action) => {
+  switch(action.type) {
+    case REQUESTING_DATA:
+      return {
+        fetching: true,
+        users: []
+      }
+    case RECEIVED_DATA:
+      return {
+        fetching: false,
+        users: action.users
+      }
+    default:
+      return state;
+  }
+};
+
+const store = Redux.createStore(
+  asyncDataReducer,
+  Redux.applyMiddleware(ReduxThunk.default)
+);
+
+
+
+// Write a Counter with Redux
+// Now you've learned all the core principles of Redux! You've seen how to create actions and action creators, create a Redux store, dispatch your actions against the store, and design state updates with pure reducers. You've even seen how to manage complex state with reducer composition and handle asynchronous actions. These examples are simplistic, but these concepts are the core principles of Redux. If you understand them well, you're ready to start building your own Redux app. The next challenges cover some of the details regarding state immutability, but first, here's a review of everything you've learned so far.
+
+// In this lesson, you'll implement a simple counter with Redux from scratch. The basics are provided in the code editor, but you'll have to fill in the details! Use the names that are provided and define incAction and decAction action creators, the counterReducer(), INCREMENT and DECREMENT action types, and finally the Redux store. Once you're finished you should be able to dispatch INCREMENT or DECREMENT actions to increment or decrement the state held in the store. Good luck building your first Redux app!
+const INCREMENT = "INCREMENT"; 
+const DECREMENT = "DECREMENT"; 
+
+// Define the counter reducer which will increment or decrement the state based on the action it receives
+const counterReducer = (state = 0, action) => {
+  switch(action.type) {
+    case INCREMENT:
+      return state + 1;
+    case DECREMENT:
+      return state - 1;
+    default:
+      return state;
+  }
+}
+
+const incAction = () => {
+  return {type: INCREMENT}
+}; 
+
+const decAction = () => {
+  return {type: DECREMENT}
+};
+
+// Define the Redux store here, passing in your reducers
+const store = Redux.createStore(counterReducer); 
+store.dispatch(incAction());
+store.dispatch(decAction());
+
+
+
+// Never Mutate State
+// These final challenges describe several methods of enforcing the key principle of state immutability in Redux. Immutable state means that you never modify state directly, instead, you return a new copy of state.
+const ADD_TO_DO = 'ADD_TO_DO';
+
+// A list of strings representing tasks to do:
+const todos = [
+  'Go to the store',
+  'Clean the house',
+  'Cook dinner',
+  'Learn to code',
+];
+
+const immutableReducer = (state = todos, action) => {
+  switch(action.type) {
+    case ADD_TO_DO:
+      // Don't mutate state here or the tests will fail
+      return state.concat(action.todo); 
+    default:
+      return state;
+  }
+};
+
+const addToDo = (todo) => {
+  return {
+    type: ADD_TO_DO,
+    todo
+  }
+}
+
+const store = Redux.createStore(immutableReducer);
