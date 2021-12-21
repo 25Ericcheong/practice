@@ -480,3 +480,7 @@ const wakeUp = () => {
 };
 
 const store = Redux.createStore(immutableReducer);
+
+
+
+// Map State to Props
