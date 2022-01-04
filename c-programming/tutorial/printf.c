@@ -12,5 +12,5 @@ int main()
   printf("%f \n", pow(2, 3));
   printf("%f", ceil(37.454));
 
-  const int num = 5;
+  const int NUM = 5;
 }
