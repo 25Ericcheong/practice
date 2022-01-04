@@ -3,10 +3,10 @@
 
 int main() 
 {
-  sayHi("Mike");
+  sayHi("Mike", 22);
   return 0;
 }
 
-void sayHi(char name[]) {
-  printf("Hello %s", name);
+void sayHi(char name[], int age) {
+  printf("Hello %s, you are %d\n", name, age);
 }
