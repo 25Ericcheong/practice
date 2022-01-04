@@ -1,10 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-double cube(double num) {
-  double result = num * num * num;
-  return result;
-}
+double cube(double num);
 
 int main() 
 {
@@ -16,4 +13,9 @@ int main()
 
 void sayHi(char name[], int age) {
   printf("Hello %s, you are %d\n", name, age);
+}
+
+double cube(double num) {
+  double result = num * num * num;
+  return result;
 }
