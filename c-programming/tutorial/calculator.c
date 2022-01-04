@@ -26,7 +26,7 @@ int main()
   } else if (op == '*') {
     result = num1 * num2;
   } else {
-    printf("Invalid operator \n");2
+    printf("Invalid operator \n");
   }
 
   printf("Answer: %f", result);
