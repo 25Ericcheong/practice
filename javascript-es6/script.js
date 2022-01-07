@@ -101,12 +101,15 @@ console.log([[0, 1], [2, 3], [4, 5]].reduce((acc, item, index) => {
   return flatten;
 }));
 
-// furhter look into this
-// inbox.filter((msg) => {
-//   const { subject, author } = msg;
-//   if (subject === 'Mockingbird') {
-//     return author === 'Harper Lee';
-//   }
+// furhter look into this #TODO
+let inbox = [{Mockingbird: 'Eric Cheong'}]
+inbox.filter((msg) => {
+  const { subject, author } = msg;
+  console.log(msg);
 
-//   return false;
-// });
+  if (subject === 'Mockingbird') {
+    return author === 'Harper Lee';
+  }
+  return false;
+});
+console.log(inbox);
