@@ -71,3 +71,42 @@ const copy = { ...original, c: 3 }; // copy => { f: 1, b: 2, c: 3 }
 const { f, ...noF } = copy;
 console.log(noF);
 console.log(original);
+
+
+// use arra.push instead of direct assignment (based on 4.2 of https://awesomeopensource.com/project/airbnb/javascript#objects)
+const someArray = [];
+someArray.push(1);
+
+// good practice to copy arrays
+const itemsCopy = [...someArray]
+someArray.push(2);
+console.log(someArray);
+console.log(itemsCopy);
+
+// refer to 4.4 and 4.5 of https://awesomeopensource.com/project/airbnb/javascript#objects
+// to convert an iterable object to an array, use spreads (...) instead of Array.from
+// use Array.from to convert array-like object to an array;
+const arrLike = {0 : 'foo', 1: 'bar', 2: 'baz', length: 3};
+const arr = Array.from(arrLike);
+console.log(arr)
+
+// example of using Array.from for mapping
+const someNumbers = {'0': 10, '1': 15, length: 2};
+Array.from(someNumbers, value => value * 2); // => [20, 30]
+// more exmaples for using Array.from -> https://dmitripavlutin.com/javascript-array-from-applications/
+
+// use return statements in array method callbacks - ok to omit return if function body consists of single statement
+console.log([[0, 1], [2, 3], [4, 5]].reduce((acc, item, index) => {
+  const flatten = acc.concat(item);
+  return flatten;
+}));
+
+// furhter look into this
+// inbox.filter((msg) => {
+//   const { subject, author } = msg;
+//   if (subject === 'Mockingbird') {
+//     return author === 'Harper Lee';
+//   }
+
+//   return false;
+// });
