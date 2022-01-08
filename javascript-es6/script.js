@@ -178,3 +178,20 @@ function goodProcessInput(input) {
 var { left_, top_ } = goodProcessInput(input);
 // for the sake of proving - var is used here
 console.log(top_);
+
+
+// Strings that goes over 100 characters, do not need to write across multiple lines using string concatenation
+// bad
+const errorMessage = 'This is a super long error that was thrown because \
+of Batman. When you stop to think about how Batman had anything to do \
+with this, you would get nowhere \
+fast.';
+
+// bad
+const errorMessage = 'This is a super long error that was thrown because ' +
+  'of Batman. When you stop to think about how Batman had anything to do ' +
+  'with this, you would get nowhere fast.';
+
+// good
+const errorMessage = 'This is a super long error that was thrown because of Batman. When you stop to think about how Batman had anything to do with this, you would get nowhere fast.';
+
