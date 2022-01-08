@@ -101,7 +101,7 @@ console.log([[0, 1], [2, 3], [4, 5]].reduce((acc, item, index) => {
   return flatten;
 }));
 
-// furhter look into this #TODO
+// furhter look into this #TODO - still not sure
 let inbox = [{Mockingbird: 'Eric Cheong'}]
 inbox.filter((msg) => {
   const { subject, author } = msg;
@@ -113,3 +113,23 @@ inbox.filter((msg) => {
   return false;
 });
 console.log(inbox);
+
+
+// use object destructuring when accessing and using multiple properties of an object 
+// refer to 5.1 of https://awesomeopensource.com/project/airbnb/javascript#objects
+// saves repetitive code and prevents creation of temporary references
+user = {
+  firstName: 'Eric',
+  lastName: 'Cheong'
+}
+
+function getFullNameGood(user) {
+  const { firstName, lastName } = user;
+  return `${firstName} ${lastName}`;
+}
+// or can also be written as such
+function getFullNameBest({ firstName, lastName }) {
+  return `${firstName} ${lastName}`;
+}
+
+console.log(getFullNameBest(user));
