@@ -133,3 +133,48 @@ function getFullNameBest({ firstName, lastName }) {
 }
 
 console.log(getFullNameBest(user));
+
+// array destructuring
+const arrDup = [1, 2, 3, 4]
+
+// do not do this
+const first = arrDup[0];
+const second = arrDup[1];
+
+// do this instead
+const [first_, second_] = arrDup;
+console.log(first_);
+console.log(second_);
+
+// object destructuring for multiple return values, not array destructuring
+var left_ = 'left';
+var right_ = 'right';
+var top_ = 'top';
+var bottom_ = 'bottom';
+let input = {
+  left_,
+  right_,
+  top_,
+  bottom_
+}
+// // bad
+function badProcessInput(input) {
+  // then a miracle occurs
+  return [left_, right_, top_, bottom_];
+}
+
+// the caller needs to think about the order of return data
+const [l, __, t] = badProcessInput(input);
+console.log(l);
+console.log(__);
+
+// good
+function goodProcessInput(input) {
+  // then a miracle occurs
+  return { left_, right_, top_, bottom_ };
+}
+
+// the caller selects only the data they need
+var { left_, top_ } = goodProcessInput(input);
+// for the sake of proving - var is used here
+console.log(top_);
