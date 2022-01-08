@@ -118,7 +118,7 @@ console.log(inbox);
 // use object destructuring when accessing and using multiple properties of an object 
 // refer to 5.1 of https://awesomeopensource.com/project/airbnb/javascript#objects
 // saves repetitive code and prevents creation of temporary references
-user = {
+let user = {
   firstName: 'Eric',
   lastName: 'Cheong'
 }
@@ -147,51 +147,65 @@ console.log(first_);
 console.log(second_);
 
 // object destructuring for multiple return values, not array destructuring
-var left_ = 'left';
-var right_ = 'right';
-var top_ = 'top';
-var bottom_ = 'bottom';
-let input = {
-  left_,
-  right_,
-  top_,
-  bottom_
+let inputs = {
+  left : 'left',
+  right : 'right',
+  top : 'top',
+  bottom : 'bottom'
 }
-// // bad
-function badProcessInput(input) {
+
+// bad
+function badProcessInput({left, right, top, bottom}) {
   // then a miracle occurs
-  return [left_, right_, top_, bottom_];
+  return [left, right, top, bottom];
 }
 
 // the caller needs to think about the order of return data
-const [l, __, t] = badProcessInput(input);
+const [l, __, t] = badProcessInput(inputs);
 console.log(l);
 console.log(__);
 
 // good
-function goodProcessInput(input) {
+function goodProcessInput(inputs) {
   // then a miracle occurs
-  return { left_, right_, top_, bottom_ };
+  return {left, right, top, bottom} = inputs;
 }
 
 // the caller selects only the data they need
-var { left_, top_ } = goodProcessInput(input);
+var {top} = goodProcessInput(inputs);
 // for the sake of proving - var is used here
-console.log(top_);
+console.log(left);
+console.log(top);
 
 
 // Strings that goes over 100 characters, do not need to write across multiple lines using string concatenation
 // bad
-const errorMessage = 'This is a super long error that was thrown because \
+const errorMessage1 = 'This is a super long error that was thrown because \
 of Batman. When you stop to think about how Batman had anything to do \
 with this, you would get nowhere \
 fast.';
 
 // bad
-const errorMessage = 'This is a super long error that was thrown because ' +
+const errorMessage2 = 'This is a super long error that was thrown because ' +
   'of Batman. When you stop to think about how Batman had anything to do ' +
   'with this, you would get nowhere fast.';
 
 // good
-const errorMessage = 'This is a super long error that was thrown because of Batman. When you stop to think about how Batman had anything to do with this, you would get nowhere fast.';
+const errorMessage3 = 'This is a super long error that was thrown because of Batman. When you stop to think about how Batman had anything to do with this, you would get nowhere fast.';
+
+// when building up strings, use template strings instead of concatenation
+// bad
+function sayHi(name) {
+  return 'How are you, ' + name + '?';
+}
+
+// bad
+function sayHi(name) {
+  return `How are you, ${ name }?`;
+}
+
+// good
+function sayHi(name) {
+  return `How are you, ${name}?`;
+}
 
