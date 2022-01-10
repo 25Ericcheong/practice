@@ -147,36 +147,36 @@ console.log(first_);
 console.log(second_);
 
 // object destructuring for multiple return values, not array destructuring
-// let inputs = {
-//   left : 'left',
-//   right : 'right',
-//   top : 'top',
-//   bottom : 'bottom'
-// }
+let inputs = {
+  left : 'left',
+  right : 'right',
+  top : 'top',
+  bottom : 'bottom'
+}
 
-// // bad
-// function badProcessInput({left, right, top, bottom}) {
-//   // then a miracle occurs
-//   return [left, right, top, bottom];
-// }
+// bad
+function badProcessInput({left, right, top, bottom}) {
+  // then a miracle occurs
+  return [left, right, top, bottom];
+}
 
-// // the caller needs to think about the order of return data
-// const [l, __, t] = badProcessInput(inputs);
-// console.log(l);
-// console.log(__);
+// the caller needs to think about the order of return data
+const [l, __, t] = badProcessInput(inputs);
+console.log(l);
+console.log(__);
 
-// // good
-// function goodProcessInput(inputs) {
-//   // then a miracle occurs
-//   return {left, right, top, bottom} = inputs;
-// }
+// good
+function goodProcessInput(inputs) {
+  // then a miracle occurs
+  return {left, right, top, bottom} = inputs;
+}
 
-// // the caller selects only the data they need
-// var {top} = goodProcessInput(inputs);
-// // for the sake of proving - var is used here
-// console.log(left);
-// console.log(top);
-
+// the caller selects only the data they need
+let {left: ll_, top: tt_, isAdmin = false} = goodProcessInput(inputs);
+// for the sake of proving - var is used here
+console.log(ll_);
+console.log(tt_);
+console.log(isAdmin);
 
 // Strings that goes over 100 characters, do not need to write across multiple lines using string concatenation
 // bad
@@ -213,8 +213,8 @@ function sayHi(name) {
 
 // do not unnecessarily escape charcters - backslashes harm readability
 // bad
-const foo = '\'this\' \i\s \"quoted\"';
+const foos = '\'this\' \i\s \"quoted\"';
 
 // good
 const foo = '\'this\' is "quoted"';
-const foo = `my name is '${name}'`;
+const food = `my name is '${name}'`;
