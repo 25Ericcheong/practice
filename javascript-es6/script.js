@@ -218,3 +218,22 @@ const foos = '\'this\' \i\s \"quoted\"';
 // good
 const foo = '\'this\' is "quoted"';
 const food = `my name is '${name}'`;
+
+
+// use named function expression as stated in 7.1 of https://awesomeopensource.com/project/airbnb/javascript#objects
+// bad
+function fofo() {
+  // ...
+}
+
+// bad
+const fooff = function () {
+  // ...
+};
+
+// good
+// lexical name distinguished from the variable-referenced invocation(s)
+const short = function longUniqueMoreDescriptiveLexicalFoo() {
+  // ...
+  console.log('called');
+};
