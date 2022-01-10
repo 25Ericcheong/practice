@@ -237,3 +237,22 @@ const short = function longUniqueMoreDescriptiveLexicalFoo() {
   // ...
   console.log('called');
 };
+
+
+// never declare a function in a non-function block eg. if, while, etc but a function declaration is not a statement
+// bad
+let currentUser = true;
+if (currentUser) {
+  function test() {
+    console.log('Nope.');
+  }
+}
+
+// good
+let test;
+if (currentUser) {
+  test = () => {
+    console.log('Yup.');
+  };
+  test();
+}
