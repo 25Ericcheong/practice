@@ -448,3 +448,28 @@ const printNumbersArrow = {
 
 printNumbersAnonFunc.loop()
 printNumbersArrow.loop()
+
+// anonymous function vs named functions vs arrow functions
+// named function
+// function declarations are hoisted - meaning they are loaded into memory at compilation. This explains why function call works even before function declaration appears
+console.log(brag(3));
+
+function brag(count) {
+  return (`I can do ${count} pushups`);
+}
+
+console.log(brag(3));
+
+// anonymous function or function expression
+// anon function are not hoisted
+// may want to use it as a callback to another function and since not going to use it again elsewhere, doesn't need a name
+var brag = function(count) {
+     return(`I can do ${count} pushups`);
+} 
+console.log(brag(3));
+
+// arrow function or lambda function
+var brag = (count) => {
+     return(`I can do ${count} pushups`)
+};
+console.log(brag(3));
