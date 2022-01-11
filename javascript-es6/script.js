@@ -220,6 +220,7 @@ const foo = '\'this\' is "quoted"';
 const food = `my name is '${name}'`;
 
 
+// about functions
 // use named function expression as stated in 7.1 of https://awesomeopensource.com/project/airbnb/javascript#objects
 // bad
 function fofo() {
@@ -329,3 +330,21 @@ new (Function.prototype.bind.apply(Date, [null, 2016, 8, 5]));
 
 // good
 new Date(...[2016, 8, 5]);
+
+
+// about arrow functions
+// when must use anonumous function - use arrow function notation
+let store = [1, 2, 3]
+// bad
+let newStore = store.map(function (x) {
+  const y = x + 1;
+  return x * y;
+});
+
+// good
+store.map((x) => {
+  const y = x + 1;
+  return x * y;
+});
+console.log(...newStore);
+console.log(...store);
