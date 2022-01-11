@@ -406,3 +406,45 @@ const itemHeight = (item) => {
   return height <= 256 ? largeSize : smallSize;
 };
 
+// enforce location of arrow function bodies withi mplicit return
+// // bad
+// (foo) =>
+//   bar;
+
+// (foo) =>
+//   (bar);
+
+// // good
+// (foo) => bar;
+// (foo) => (bar);
+// (foo) => (
+//    bar
+// )
+
+// further research and understanding of anonymous and arrow functions
+// anonymous function has its own function context and therefore has no reference available to this.phrase
+const printNumbersAnonFunc = {
+  phrase: 'The current value is:',
+  numbers: [1, 2, 3, 4],
+
+  loop() {
+    this.numbers.forEach(function (number) {
+      console.log(this.phrase, number)
+    })
+  },
+}
+
+// arrow function has same exact same function context as function that created it, giving it access to both arguments and test object
+const printNumbersArrow = {
+  phrase: 'The current value is:',
+  numbers: [1, 2, 3, 4],
+
+  loop() {
+    this.numbers.forEach((number) => {
+      console.log(this.phrase, number)
+    })
+  },
+}
+
+printNumbersAnonFunc.loop()
+printNumbersArrow.loop()
