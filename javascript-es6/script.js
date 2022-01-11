@@ -291,3 +291,41 @@ count();  // 1
 count();  // 2
 count(3); // 3
 count();  // 3
+
+// always put default parameters last
+// bad
+function handleThings(opts = {}, name) {
+  // ...
+}
+
+// good
+function handleThings(name, opts = {}) {
+  // ...
+}
+
+// never mutate parameters
+// bad
+function f1(obj) {
+  obj.key = 1;
+}
+
+// good
+function f2(obj) {
+  const key = Object.prototype.hasOwnProperty.call(obj, 'key') ? obj.key : 1;
+}
+
+// use ... to call variadic functions - spread operator
+// bad
+const x = [1, 2, 3, 4, 5];
+console.log(x);
+console.log.apply(console, x);
+
+// good
+const s = [1, 2, 3, 4, 5];
+console.log(...s);
+
+// bad
+new (Function.prototype.bind.apply(Date, [null, 2016, 8, 5]));
+
+// good
+new Date(...[2016, 8, 5]);
