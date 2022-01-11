@@ -382,3 +382,27 @@ function foovv(callback) {
     // Do something if callback returns true
   }
 }
+
+// always include parentheses around argument
+// bad
+[1, 2, 3].map(x => x * x);
+
+// good
+[1, 2, 3].map((x) => x * x);
+
+// avoid confusing arrow function syntax (=>) with comparison operators ( <=, >= )
+// bad
+const itemHeight = (item) => item.height <= 256 ? item.largeSize : item.smallSize;
+
+// bad
+const itemHeight = (item) => item.height >= 256 ? item.largeSize : item.smallSize;
+
+// good
+const itemHeight = (item) => (item.height <= 256 ? item.largeSize : item.smallSize);
+
+// good
+const itemHeight = (item) => {
+  const { height, largeSize, smallSize } = item;
+  return height <= 256 ? largeSize : smallSize;
+};
+
