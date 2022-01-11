@@ -332,8 +332,8 @@ new (Function.prototype.bind.apply(Date, [null, 2016, 8, 5]));
 new Date(...[2016, 8, 5]);
 
 
-// about arrow functions
-// when must use anonumous function - use arrow function notation
+// about arrow functions from https://awesomeopensource.com/project/airbnb/javascript#objects
+// when must use anonymous function - use arrow function notation
 let store = [1, 2, 3]
 // bad
 let newStore = store.map(function (x) {
@@ -348,3 +348,37 @@ store.map((x) => {
 });
 console.log(...newStore);
 console.log(...store);
+
+// if function consists of single statement returning an expression without side effects, omit braces and use implicit return
+// We have several ways of writing our arrow functions. This is because arrow functions can have either "implied return" or "explicit return" keyword.
+
+// With normal functions, if you want to return something, you have to use the return keyword. Arrow functions also have that. When you use the return keyword, it's called an explicit return. However, arrow functions up their game and allow something called implied return where the return keyword can be skipped. Let's look at some example
+// bad
+[1, 2, 3].map((number) => {
+  const nextNumber = number + 1;
+  `A string containing the ${nextNumber}.`;
+});
+
+// good
+let trySomething;
+trySomething = [1, 2, 3].map((number) => `A string containing the ${number + 1}.`);
+console.log(...trySomething);
+
+// good
+[1, 2, 3].map((number) => {
+  const nextNumber = number + 1;
+  return `A string containing the ${nextNumber}.`;
+});
+
+// good
+[1, 2, 3].map((number, index) => ({
+  [index]: number,
+}));
+
+// No implicit return with side effects
+function foovv(callback) {
+  const val = callback();
+  if (val === true) {
+    // Do something if callback returns true
+  }
+}
