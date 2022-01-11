@@ -392,13 +392,13 @@ function foovv(callback) {
 
 // avoid confusing arrow function syntax (=>) with comparison operators ( <=, >= )
 // bad
-const itemHeight = (item) => item.height <= 256 ? item.largeSize : item.smallSize;
+// const itemHeight = (item) => item.height <= 256 ? item.largeSize : item.smallSize;
 
-// bad
-const itemHeight = (item) => item.height >= 256 ? item.largeSize : item.smallSize;
+// // bad
+// const itemHeight = (item) => item.height >= 256 ? item.largeSize : item.smallSize;
 
-// good
-const itemHeight = (item) => (item.height <= 256 ? item.largeSize : item.smallSize);
+// // good
+// const itemHeight = (item) => (item.height <= 256 ? item.largeSize : item.smallSize);
 
 // good
 const itemHeight = (item) => {
