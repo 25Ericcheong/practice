@@ -256,3 +256,38 @@ if (currentUser) {
   };
   test();
 }
+
+
+// use default parameter syntax rather than mutating function arguments
+// really bad
+function handleThings(opts) {
+  // No! We shouldn’t mutate function arguments.
+  // Double bad: if opts is falsy it'll be set to an object which may
+  // be what you want but it can introduce subtle bugs.
+  opts = opts || {};
+  // ...
+}
+
+// still bad
+function handleThings(opts) {
+  if (opts === void 0) {
+    opts = {};
+  }
+  // ...
+}
+
+// good
+function handleThings(opts = {}) {
+  // ...
+}
+
+// avoid side effects with default parameters
+var b = 1;
+// bad
+function count(a = b++) {
+  console.log(a);
+}
+count();  // 1
+count();  // 2
+count(3); // 3
+count();  // 3
