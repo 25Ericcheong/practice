@@ -473,3 +473,90 @@ var brag = (count) => {
      return(`I can do ${count} pushups`)
 };
 console.log(brag(3));
+
+
+// avoid manipulating prototype directly as stated in https://awesomeopensource.com/project/airbnb/javascript#objects
+// bad
+function Queue(contents = []) {
+  this.queue = [...contents];
+}
+Queue.prototype.pop = function () {
+  const value = this.queue[0];
+  this.queue.splice(0, 1);
+  return value;
+};
+
+// good
+class Queuef {
+  constructor(contents = []) {
+    this.queue = [...contents];
+  }
+  pop() {
+    const value = this.queue[0];
+    this.queue.splice(0, 1);
+    return value;
+  }
+}
+
+
+// use extends for inheritance to inherit prototype functionality
+// bad
+// const inherits = require('inherits'); -> for node.js modules
+const inherits = function() {};
+function PeekableQueue(contents) {
+  Queue.apply(this, contents);
+}
+inherits(PeekableQueue, Queue);
+PeekableQueue.prototype.peek = function () {
+  return this.queue[0];
+};
+
+// good
+class PeekableQueuef extends Queue {
+  peek() {
+    return this.queue[0];
+  }
+}
+
+
+// methods can return this to help with method chaining
+// good
+class Jedi {
+  jump() {
+    this.jumping = true;
+    return this;
+  }
+
+  setHeight(height) {
+    this.height = height;
+    return this;
+  }
+}
+
+const luke = new Jedi();
+console.log(luke.jump().setHeight(20));
+
+
+// bad
+class Jedis {
+  constructor() {}
+
+  getName() {
+    return this.name;
+  }
+}
+
+// bad
+class ReyBad extends Jedis {
+  constructor(...args) {
+    super(...args);
+  }
+}s
+
+// good
+class ReyGood extends Jedis {
+  constructor(...args) {
+    super(...args);
+    this.name = 'Rey';
+  }
+}
