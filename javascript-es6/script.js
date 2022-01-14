@@ -560,3 +560,41 @@ class ReyGood extends Jedis {
     this.name = 'Rey';
   }
 }
+
+
+// avoid duplicate class members
+// bad
+class Foo {
+  bar() { return 1; }
+  bar() { return 2; }
+}
+
+
+// Class methods should use this or be made into a static method unless an external library or framework requires using specific non-static methods. Being an instance method should indicate that it behaves differently based on properties of the receiver
+// bad
+class Foog {
+  bar() {
+    console.log('bar');
+  }
+}
+
+// good - this is used
+class Fooh {
+  bar() {
+    console.log(this.bar);
+  }
+}
+
+// good - constructor is exempt
+class Fooj {
+  constructor() {
+    // ...
+  }
+}
+
+// good - static methods aren't expected to use this
+class Fook {
+  static bar() {
+    console.log('bar');
+  }
+}
