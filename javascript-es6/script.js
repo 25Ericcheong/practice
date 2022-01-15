@@ -598,3 +598,40 @@ class Fook {
     console.log('bar');
   }
 }
+
+//  Don’t use iterators. Prefer JavaScript’s higher-order functions instead of loops like for-in or for-of
+// Use map() / every() / filter() / find() / findIndex() / reduce() / some() / ... to iterate over arrays, and Object.keys() / Object.values() / Object.entries() to produce arrays so you can iterate over objects
+const numbers = [1, 2, 3, 4, 5];
+
+// bad
+let sum = 0;
+for (let num of numbers) {
+  sum += num;
+}
+sum === 15;
+
+// good
+let sum2 = 0;
+numbers.forEach((num) => {
+  sum2 += num;
+});
+sum2 === 15;
+
+// best (use the functional force)
+const sum3 = numbers.reduce((total, num) => total + num, 0);
+sum3 === 15;
+
+// bad
+const increasedByOne = [];
+for (let i = 0; i < numbers.length; i++) {
+  increasedByOne.push(numbers[i] + 1);
+}
+
+// good
+const increasedByOne2 = [];
+numbers.forEach((num) => {
+  increasedByOne2.push(num + 1);
+});
+
+// best (keeping it functional)
+const increasedByOne3 = numbers.map((num) => num + 1);
