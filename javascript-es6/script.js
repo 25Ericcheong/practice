@@ -641,5 +641,21 @@ const increasedByOne3 = numbers.map((num) => num + 1);
 const binary = Math.pow(2, 10);
 
 // good
-const binary = 2 ** 10;
+const sbinary = 2 ** 10;
 
+// understanding effects of not using let in for loop
+for (var i = 0; i < 5; i++) {
+  setTimeout(function () {
+    console.log('index: ' + i);
+  }, 1000);
+}
+
+for (let i = 0; i < 5; i++) {
+  setTimeout(function () {
+    console.log('let index: ' + i);
+  }, 1000);
+}
+
+for (var i = 0; i < 4; i++) {
+  console.log(i);
+}
