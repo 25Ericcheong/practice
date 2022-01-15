@@ -635,3 +635,11 @@ numbers.forEach((num) => {
 
 // best (keeping it functional)
 const increasedByOne3 = numbers.map((num) => num + 1);
+
+// use exponentiation operator **
+// bad
+const binary = Math.pow(2, 10);
+
+// good
+const binary = 2 ** 10;
+
