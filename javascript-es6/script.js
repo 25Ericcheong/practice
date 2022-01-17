@@ -644,6 +644,7 @@ const binary = Math.pow(2, 10);
 const sbinary = 2 ** 10;
 
 // understanding effects of not using let in for loop
+// refresher on the below - https://developer.mozilla.org/en-US/docs/Web/JavaScript/Closures
 for (var i = 0; i < 5; i++) {
   setTimeout(function () {
     console.log('index: ' + i);
@@ -659,3 +660,17 @@ for (let i = 0; i < 5; i++) {
 for (var i = 0; i < 4; i++) {
   console.log(i);
 }
+
+// with closure, can call closure function later on when needed - the perks of using closures
+function prepareCake (flavor) {
+  return function () {
+    setTimeout(_ => console.log(`Made a ${flavor} cake!`), 1000)
+  }
+}
+
+const makeCakeLater = prepareCake('banana')
+
+// And later in your code...
+makeCakeLater()
+// Made a banana cake!
+
