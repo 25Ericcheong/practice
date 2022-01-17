@@ -651,6 +651,26 @@ for (var i = 0; i < 5; i++) {
   }, 1000);
 }
 
+// additional solution is to use anonymous closures
+for (var i = 0; i < 5; i++) {
+  (function() {
+    var j = i;
+    setTimeout(function () {
+    console.log('index: ' + j);
+    }, 1000);
+  })();
+}
+
+// another, possibly better way is to do this
+for (var i = 0; i < 5; i++) {
+  (function(i) {
+    setTimeout(function () {
+    console.log('index: ' + i);
+    }, 1000);
+  })(i);
+}
+
+// another solution is using let
 for (let i = 0; i < 5; i++) {
   setTimeout(function () {
     console.log('let index: ' + i);
@@ -673,4 +693,3 @@ const makeCakeLater = prepareCake('banana')
 // And later in your code...
 makeCakeLater()
 // Made a banana cake!
-
