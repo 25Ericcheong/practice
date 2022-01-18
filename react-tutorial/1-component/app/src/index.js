@@ -4,10 +4,15 @@ import ReactDom from "react-dom";
 function Greeting() {
   return (
     <div>
-      <h4>This is Eric and this is my first component</h4>
-      <p>This is something</p>
+      <Person />
+      <Message />
     </div>
   );
 }
+
+const Person = () => <h2>Eric Cheong</h2>;
+const Message = () => {
+  return <p>This is a message</p>;
+};
 
 ReactDom.render(<Greeting />, document.getElementById("root"));
