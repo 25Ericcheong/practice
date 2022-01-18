@@ -34,12 +34,7 @@ function BookList() {
   );
 }
 
-const Book = (props) => {
-  // destructuring object
-  // props.book because we sent book object previously
-  // can also directly send img, title, author and not book object but will change from props.book to props instead then
-  const { img, title, author } = props;
-
+const Book = ({ img, title, author }) => {
   return (
     <article className="book">
       <img src={img} alt="" />
