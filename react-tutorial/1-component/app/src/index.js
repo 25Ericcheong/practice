@@ -3,25 +3,41 @@ import ReactDom from "react-dom";
 
 import "./index.css";
 
+const firstBook = {
+  img: "https://images-na.ssl-images-amazon.com/images/I/91lk9FG9xQL._AC_UL200_SR200,200_.jpg",
+  title: "Atomic Habits",
+  author: "James Clear",
+};
+
+const secondBook = {
+  img: "https://images-na.ssl-images-amazon.com/images/I/81V8R5aqDYL._AC_UL200_SR200,200_.jpg",
+  title: "American Marxism",
+  author: "Mark R. Levin",
+};
+
 function BookList() {
   return (
     <section className="booklist">
-      <Book />
+      <Book
+        title={firstBook.title}
+        author={firstBook.author}
+        img={firstBook.img}
+      />
+      <Book
+        title={secondBook.title}
+        author={secondBook.author}
+        img={secondBook.img}
+      />
     </section>
   );
 }
 
-const Book = () => {
-  const title = "Atomic Habits";
-  const author = "James Clear";
+const Book = (props) => {
   return (
     <article className="book">
-      <img
-        src="https://images-fe.ssl-images-amazon.com/images/I/91bYsX41DVL._AC_UL604_SR604,400_.jpg"
-        alt=""
-      />
-      <h1>{title}</h1>
-      <h4>{author.toUpperCase()}</h4>
+      <img src={props.img} alt="" />
+      <h1>{props.title}</h1>
+      <h4>{props.author}</h4>
     </article>
   );
 };
