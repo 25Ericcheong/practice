@@ -652,6 +652,7 @@ for (var i = 0; i < 5; i++) {
 }
 
 // additional solution is to use anonymous closures
+// this and the next are utilizing IIFE - immediately invoke function expression
 for (var i = 0; i < 5; i++) {
   (function() {
     var j = i;
@@ -667,7 +668,7 @@ for (var i = 0; i < 5; i++) {
     setTimeout(function () {
     console.log('index: ' + i);
     }, 1000);
-  })(i);
+  }(i));
 }
 
 // another solution is using let
@@ -693,3 +694,43 @@ const makeCakeLater = prepareCake('banana')
 // And later in your code...
 makeCakeLater()
 // Made a banana cake!
+
+
+// example of creating a classic sequence singleton with the use of IFFE
+var Sequence = (function sequenceIIFE() {
+    
+    // Private variable to store current counter value.
+    var current = 0;
+    
+    // Object that's returned from the IIFE.
+    return {
+        getCurrentValue: function() {
+            return current;
+        },
+        
+        getNextValue: function() {
+            current = current + 1;
+            return current;
+        }
+    };
+    
+}());
+
+console.log(Sequence.getNextValue()); // 1
+console.log(Sequence.getNextValue()); // 2
+console.log(Sequence.getCurrentValue()); // 2
+
+
+// notes on variables
+// do not chain variable assignment as it creates implicit global variable
+(function example() {
+  // JavaScript interprets this as
+  // let a = ( b = ( c = 1 ) );
+  // The let keyword only applies to variable a; variables b and c become
+  // global variables.
+  let a = b = c = 1;
+}());
+
+console.log(a); // throws ReferenceError
+console.log(b); // 1
+console.log(c); // 1
