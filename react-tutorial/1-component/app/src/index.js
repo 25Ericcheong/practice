@@ -34,6 +34,10 @@ const Image = () => (
 );
 
 const Title = () => <h1>Atomic Habits</h1>;
-const Author = () => <h4>James Clear</h4>;
+const Author = () => (
+  <h4 style={{ color: "#617d98", fontSize: "0.75em", marginTop: "0.25rem" }}>
+    James Clear
+  </h4>
+);
 
 ReactDom.render(<BookList />, document.getElementById("root"));
