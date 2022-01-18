@@ -52,7 +52,7 @@ const Book = ({ img, title, author }) => {
       <button type="button" onClick={clickHandler}>
         Examples
       </button>
-      <button type="button" onClick={complexExample(author)}>
+      <button type="button" onClick={() => complexExample(author)}>
         More complex
       </button>
     </article>
