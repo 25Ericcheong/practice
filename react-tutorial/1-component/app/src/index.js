@@ -40,6 +40,10 @@ const Book = ({ img, title, author }) => {
     alert("Hello World");
   };
 
+  const complexExample = (author) => {
+    console.log(author);
+  };
+
   return (
     <article className="book">
       <img src={img} alt="" />
@@ -47,6 +51,9 @@ const Book = ({ img, title, author }) => {
       <h4>{author}</h4>
       <button type="button" onClick={clickHandler}>
         Examples
+      </button>
+      <button type="button" onClick={complexExample(author)}>
+        More complex
       </button>
     </article>
   );
