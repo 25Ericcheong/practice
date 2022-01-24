@@ -5,45 +5,48 @@ const atom = {
   addValue(value) {
     return atom.value + value;
   },
-}
+};
 console.log(atom.addValue(2));
 
-
 // use property value shorthand
-const lukeSkywalker = 'Like Skywalker';
+const lukeSkywalker = "Like Skywalker";
 const obj = {
   lukeSkywalker,
-}
-
+};
 
 // only quote properties that are invalid identifiers
 const good = {
   foo: 3,
   bar: 4,
-  'data-blah': 5,
-}
+  "data-blah": 5,
+};
 console.log(good.foo);
-
 
 // do not call Object.prototype methods directly, such as hasOwnProperty, propertyIsEnumerable
 
 // further studying reference - https://dev.to/aman_singh/what-s-the-deal-with-object-prototype-hasownproperty-call-4mbj
 // understanding object.prototype - result from prototypal inheritance and the way prototype chain works
 // chain works as such stuff -> Object.prototype -> null
-var stuff = {name: 'aman'};
-console.log(stuff.hasOwnProperty('name'));
+var stuff = { name: "aman" };
+console.log(stuff.hasOwnProperty("name"));
 console.log(Object.getPrototypeOf(stuff) === Object.prototype);
 
 // can set up or override prototype chain with the use of setPrototypeOf
-var person = {name : 'peter'};
-var PersonPrototype = {getName() {return this.name}};
+var person = { name: "peter" };
+var PersonPrototype = {
+  getName() {
+    return this.name;
+  },
+};
 Object.setPrototypeOf(person, PersonPrototype);
 
 console.log(person.getName());
 
 // borrowing a function - have object borrow a function without object implementing it
-function sayHello() { console.log(`Greetings ${this.name}`) };
-var a = {name: 'peter'};
+function sayHello() {
+  console.log(`Greetings ${this.name}`);
+}
+var a = { name: "peter" };
 
 // done by using call and apply available on Function.prototype
 // every function created inherits from Function.prototype
@@ -53,7 +56,7 @@ sayHello.call(a);
 // upon understanding prototypal inheritance and borrowing functions - can understand why one should use hasOwnProperty on Object.prototype and not on object instance
 // this modifies the chain prototype
 var a = Object.create(null); // chain is now a -> null
-a.name = 'peter';
+a.name = "peter";
 
 // this causes error because (based on 3.7 of https://awesomeopensource.com/project/airbnb/javascript#objects)
 // object can be shadowed by properties on the object or object may be a null object as shown previously
@@ -62,8 +65,7 @@ a.name = 'peter';
 
 // as such, best practice is to do this
 const has = Object.prototype.hasOwnProperty;
-console.log(has.call(a, 'name'));
-
+console.log(has.call(a, "name"));
 
 // prefer object spread syntax over Object.assign to shallow-copy objects. Use object rest parameter syntax to get a new object with certain properties omitted (based on 3.8 of https://awesomeopensource.com/project/airbnb/javascript#objects)
 const original = { f: 1, b: 2 };
@@ -72,13 +74,12 @@ const { f, ...noF } = copy;
 console.log(noF);
 console.log(original);
 
-
 // use arra.push instead of direct assignment (based on 4.2 of https://awesomeopensource.com/project/airbnb/javascript#objects)
 const someArray = [];
 someArray.push(1);
 
 // good practice to copy arrays
-const itemsCopy = [...someArray]
+const itemsCopy = [...someArray];
 someArray.push(2);
 console.log(someArray);
 console.log(itemsCopy);
@@ -86,42 +87,47 @@ console.log(itemsCopy);
 // refer to 4.4 and 4.5 of https://awesomeopensource.com/project/airbnb/javascript#objects
 // to convert an iterable object to an array, use spreads (...) instead of Array.from
 // use Array.from to convert array-like object to an array;
-const arrLike = {0 : 'foo', 1: 'bar', 2: 'baz', length: 3};
+const arrLike = { 0: "foo", 1: "bar", 2: "baz", length: 3 };
 const arr = Array.from(arrLike);
-console.log(arr)
+console.log(arr);
 
 // example of using Array.from for mapping
-const someNumbers = {'0': 10, '1': 15, length: 2};
-Array.from(someNumbers, value => value * 2); // => [20, 30]
+const someNumbers = { 0: 10, 1: 15, length: 2 };
+Array.from(someNumbers, (value) => value * 2); // => [20, 30]
 // more exmaples for using Array.from -> https://dmitripavlutin.com/javascript-array-from-applications/
 
 // use return statements in array method callbacks - ok to omit return if function body consists of single statement
-console.log([[0, 1], [2, 3], [4, 5]].reduce((acc, item, index) => {
-  const flatten = acc.concat(item);
-  return flatten;
-}));
+console.log(
+  [
+    [0, 1],
+    [2, 3],
+    [4, 5],
+  ].reduce((acc, item, index) => {
+    const flatten = acc.concat(item);
+    return flatten;
+  })
+);
 
 // furhter look into this #TODO - still not sure
-let inbox = [{Mockingbird: 'Eric Cheong'}]
+let inbox = [{ Mockingbird: "Eric Cheong" }];
 inbox.filter((msg) => {
   const { subject, author } = msg;
   console.log(msg);
 
-  if (subject === 'Mockingbird') {
-    return author === 'Harper Lee';
+  if (subject === "Mockingbird") {
+    return author === "Harper Lee";
   }
   return false;
 });
 console.log(inbox);
 
-
-// use object destructuring when accessing and using multiple properties of an object 
+// use object destructuring when accessing and using multiple properties of an object
 // refer to 5.1 of https://awesomeopensource.com/project/airbnb/javascript#objects
 // saves repetitive code and prevents creation of temporary references
 let user = {
-  firstName: 'Eric',
-  lastName: 'Cheong'
-}
+  firstName: "Eric",
+  lastName: "Cheong",
+};
 
 function getFullNameGood(user) {
   const { firstName, lastName } = user;
@@ -135,7 +141,7 @@ function getFullNameBest({ firstName, lastName }) {
 console.log(getFullNameBest(user));
 
 // array destructuring
-const arrDup = [1, 2, 3, 4]
+const arrDup = [1, 2, 3, 4];
 
 // do not do this
 const first = arrDup[0];
@@ -148,14 +154,14 @@ console.log(second_);
 
 // object destructuring for multiple return values, not array destructuring
 let inputs = {
-  left : 'left',
-  right : 'right',
-  top : 'top',
-  bottom : 'bottom'
-}
+  left: "left",
+  right: "right",
+  top: "top",
+  bottom: "bottom",
+};
 
 // bad
-function badProcessInput({left, right, top, bottom}) {
+function badProcessInput({ left, right, top, bottom }) {
   // then a miracle occurs
   return [left, right, top, bottom];
 }
@@ -168,11 +174,11 @@ console.log(__);
 // good
 function goodProcessInput(inputs) {
   // then a miracle occurs
-  return {left, right, top, bottom} = inputs;
+  return ({ left, right, top, bottom } = inputs);
 }
 
 // the caller selects only the data they need
-let {left: ll_, top: tt_, isAdmin = false} = goodProcessInput(inputs);
+let { left: ll_, top: tt_, isAdmin = false } = goodProcessInput(inputs);
 // for the sake of proving - var is used here
 console.log(ll_);
 console.log(tt_);
@@ -180,28 +186,31 @@ console.log(isAdmin);
 
 // Strings that goes over 100 characters, do not need to write across multiple lines using string concatenation
 // bad
-const errorMessage1 = 'This is a super long error that was thrown because \
+const errorMessage1 =
+  "This is a super long error that was thrown because \
 of Batman. When you stop to think about how Batman had anything to do \
 with this, you would get nowhere \
-fast.';
+fast.";
 
 // bad
-const errorMessage2 = 'This is a super long error that was thrown because ' +
-  'of Batman. When you stop to think about how Batman had anything to do ' +
-  'with this, you would get nowhere fast.';
+const errorMessage2 =
+  "This is a super long error that was thrown because " +
+  "of Batman. When you stop to think about how Batman had anything to do " +
+  "with this, you would get nowhere fast.";
 
 // good
-const errorMessage3 = 'This is a super long error that was thrown because of Batman. When you stop to think about how Batman had anything to do with this, you would get nowhere fast.';
+const errorMessage3 =
+  "This is a super long error that was thrown because of Batman. When you stop to think about how Batman had anything to do with this, you would get nowhere fast.";
 
 // when building up strings, use template strings instead of concatenation
 // bad
 function sayHi(name) {
-  return 'How are you, ' + name + '?';
+  return "How are you, " + name + "?";
 }
 
 // bad
 function sayHi(name) {
-  return `How are you, ${ name }?`;
+  return `How are you, ${name}?`;
 }
 
 // good
@@ -213,12 +222,11 @@ function sayHi(name) {
 
 // do not unnecessarily escape charcters - backslashes harm readability
 // bad
-const foos = '\'this\' \i\s \"quoted\"';
+const foos = "'this' is \"quoted\"";
 
 // good
-const foo = '\'this\' is "quoted"';
+const foo = "'this' is \"quoted\"";
 const food = `my name is '${name}'`;
-
 
 // about functions
 // use named function expression as stated in 7.1 of https://awesomeopensource.com/project/airbnb/javascript#objects
@@ -236,16 +244,15 @@ const fooff = function () {
 // lexical name distinguished from the variable-referenced invocation(s)
 const short = function longUniqueMoreDescriptiveLexicalFoo() {
   // ...
-  console.log('called');
+  console.log("called");
 };
-
 
 // never declare a function in a non-function block eg. if, while, etc but a function declaration is not a statement
 // bad
 let currentUser = true;
 if (currentUser) {
   function test() {
-    console.log('Nope.');
+    console.log("Nope.");
   }
 }
 
@@ -253,11 +260,10 @@ if (currentUser) {
 let test;
 if (currentUser) {
   test = () => {
-    console.log('Yup.');
+    console.log("Yup.");
   };
   test();
 }
-
 
 // use default parameter syntax rather than mutating function arguments
 // really bad
@@ -288,10 +294,10 @@ var b = 1;
 function count(a = b++) {
   console.log(a);
 }
-count();  // 1
-count();  // 2
+count(); // 1
+count(); // 2
 count(3); // 3
-count();  // 3
+count(); // 3
 
 // always put default parameters last
 // bad
@@ -312,7 +318,7 @@ function f1(obj) {
 
 // good
 function f2(obj) {
-  const key = Object.prototype.hasOwnProperty.call(obj, 'key') ? obj.key : 1;
+  const key = Object.prototype.hasOwnProperty.call(obj, "key") ? obj.key : 1;
 }
 
 // use ... to call variadic functions - spread operator
@@ -326,15 +332,14 @@ const s = [1, 2, 3, 4, 5];
 console.log(...s);
 
 // bad
-new (Function.prototype.bind.apply(Date, [null, 2016, 8, 5]));
+new (Function.prototype.bind.apply(Date, [null, 2016, 8, 5]))();
 
 // good
 new Date(...[2016, 8, 5]);
 
-
 // about arrow functions from https://awesomeopensource.com/project/airbnb/javascript#objects
 // when must use anonymous function - use arrow function notation
-let store = [1, 2, 3]
+let store = [1, 2, 3];
 // bad
 let newStore = store.map(function (x) {
   const y = x + 1;
@@ -361,7 +366,9 @@ console.log(...store);
 
 // good
 let trySomething;
-trySomething = [1, 2, 3].map((number) => `A string containing the ${number + 1}.`);
+trySomething = [1, 2, 3].map(
+  (number) => `A string containing the ${number + 1}.`
+);
 console.log(...trySomething);
 
 // good
@@ -385,7 +392,7 @@ function foovv(callback) {
 
 // always include parentheses around argument
 // bad
-[1, 2, 3].map(x => x * x);
+[1, 2, 3].map((x) => x * x);
 
 // good
 [1, 2, 3].map((x) => x * x);
@@ -424,30 +431,30 @@ const itemHeight = (item) => {
 // further research and understanding of anonymous and arrow functions
 // anonymous function has its own function context and therefore has no reference available to this.phrase
 const printNumbersAnonFunc = {
-  phrase: 'The current value is:',
+  phrase: "The current value is:",
   numbers: [1, 2, 3, 4],
 
   loop() {
     this.numbers.forEach(function (number) {
-      console.log(this.phrase, number)
-    })
+      console.log(this.phrase, number);
+    });
   },
-}
+};
 
 // arrow function has same exact same function context as function that created it, giving it access to both arguments and test object
 const printNumbersArrow = {
-  phrase: 'The current value is:',
+  phrase: "The current value is:",
   numbers: [1, 2, 3, 4],
 
   loop() {
     this.numbers.forEach((number) => {
-      console.log(this.phrase, number)
-    })
+      console.log(this.phrase, number);
+    });
   },
-}
+};
 
-printNumbersAnonFunc.loop()
-printNumbersArrow.loop()
+printNumbersAnonFunc.loop();
+printNumbersArrow.loop();
 
 // anonymous function vs named functions vs arrow functions
 // named function
@@ -455,7 +462,7 @@ printNumbersArrow.loop()
 console.log(brag(3));
 
 function brag(count) {
-  return (`I can do ${count} pushups`);
+  return `I can do ${count} pushups`;
 }
 
 console.log(brag(3));
@@ -463,17 +470,16 @@ console.log(brag(3));
 // anonymous function or function expression
 // anon function are not hoisted
 // may want to use it as a callback to another function and since not going to use it again elsewhere, doesn't need a name
-var brag = function(count) {
-     return(`I can do ${count} pushups`);
-} 
+var brag = function (count) {
+  return `I can do ${count} pushups`;
+};
 console.log(brag(3));
 
 // arrow function or lambda function
 var brag = (count) => {
-     return(`I can do ${count} pushups`)
+  return `I can do ${count} pushups`;
 };
 console.log(brag(3));
-
 
 // avoid manipulating prototype directly as stated in https://awesomeopensource.com/project/airbnb/javascript#objects
 // bad
@@ -498,11 +504,10 @@ class Queuef {
   }
 }
 
-
 // use extends for inheritance to inherit prototype functionality
 // bad
 // const inherits = require('inherits'); -> for node.js modules
-const inherits = function() {};
+const inherits = function () {};
 function PeekableQueue(contents) {
   Queue.apply(this, contents);
 }
@@ -517,7 +522,6 @@ class PeekableQueuef extends Queue {
     return this.queue[0];
   }
 }
-
 
 // methods can return this to help with method chaining
 // good
@@ -536,7 +540,6 @@ class Jedi {
 const luke = new Jedi();
 console.log(luke.jump().setHeight(20));
 
-
 // bad
 class Jedis {
   constructor() {}
@@ -551,30 +554,33 @@ class ReyBad extends Jedis {
   constructor(...args) {
     super(...args);
   }
-}s
+}
+s;
 
 // good
 class ReyGood extends Jedis {
   constructor(...args) {
     super(...args);
-    this.name = 'Rey';
+    this.name = "Rey";
   }
 }
-
 
 // avoid duplicate class members
 // bad
 class Foo {
-  bar() { return 1; }
-  bar() { return 2; }
+  bar() {
+    return 1;
+  }
+  bar() {
+    return 2;
+  }
 }
-
 
 // Class methods should use this or be made into a static method unless an external library or framework requires using specific non-static methods. Being an instance method should indicate that it behaves differently based on properties of the receiver
 // bad
 class Foog {
   bar() {
-    console.log('bar');
+    console.log("bar");
   }
 }
 
@@ -595,7 +601,7 @@ class Fooj {
 // good - static methods aren't expected to use this
 class Fook {
   static bar() {
-    console.log('bar');
+    console.log("bar");
   }
 }
 
@@ -647,34 +653,34 @@ const sbinary = 2 ** 10;
 // refresher on the below - https://developer.mozilla.org/en-US/docs/Web/JavaScript/Closures
 for (var i = 0; i < 5; i++) {
   setTimeout(function () {
-    console.log('index: ' + i);
+    console.log("index: " + i);
   }, 1000);
 }
 
 // additional solution is to use anonymous closures
 // this and the next are utilizing IIFE - immediately invoke function expression
 for (var i = 0; i < 5; i++) {
-  (function() {
+  (function () {
     var j = i;
     setTimeout(function () {
-    console.log('index: ' + j);
+      console.log("index: " + j);
     }, 1000);
   })();
 }
 
 // another, possibly better way is to do this
 for (var i = 0; i < 5; i++) {
-  (function(i) {
+  (function (i) {
     setTimeout(function () {
-    console.log('index: ' + i);
+      console.log("index: " + i);
     }, 1000);
-  }(i));
+  })(i);
 }
 
 // another solution is using let
 for (let i = 0; i < 5; i++) {
   setTimeout(function () {
-    console.log('let index: ' + i);
+    console.log("let index: " + i);
   }, 1000);
 }
 
@@ -683,43 +689,39 @@ for (var i = 0; i < 4; i++) {
 }
 
 // with closure, can call closure function later on when needed - the perks of using closures
-function prepareCake (flavor) {
+function prepareCake(flavor) {
   return function () {
-    setTimeout(_ => console.log(`Made a ${flavor} cake!`), 1000)
-  }
+    setTimeout((_) => console.log(`Made a ${flavor} cake!`), 1000);
+  };
 }
 
-const makeCakeLater = prepareCake('banana')
+const makeCakeLater = prepareCake("banana");
 
 // And later in your code...
-makeCakeLater()
+makeCakeLater();
 // Made a banana cake!
-
 
 // example of creating a classic sequence singleton with the use of IFFE
 var Sequence = (function sequenceIIFE() {
-    
-    // Private variable to store current counter value.
-    var current = 0;
-    
-    // Object that's returned from the IIFE.
-    return {
-        getCurrentValue: function() {
-            return current;
-        },
-        
-        getNextValue: function() {
-            current = current + 1;
-            return current;
-        }
-    };
-    
-}());
+  // Private variable to store current counter value.
+  var current = 0;
+
+  // Object that's returned from the IIFE.
+  return {
+    getCurrentValue: function () {
+      return current;
+    },
+
+    getNextValue: function () {
+      current = current + 1;
+      return current;
+    },
+  };
+})();
 
 console.log(Sequence.getNextValue()); // 1
 console.log(Sequence.getNextValue()); // 2
 console.log(Sequence.getCurrentValue()); // 2
-
 
 // notes on variables
 // do not chain variable assignment as it creates implicit global variable
@@ -728,9 +730,37 @@ console.log(Sequence.getCurrentValue()); // 2
   // let a = ( b = ( c = 1 ) );
   // The let keyword only applies to variable a; variables b and c become
   // global variables.
-  let a = b = c = 1;
-}());
+  let a = (b = c = 1);
+})();
 
 console.log(a); // throws ReferenceError
 console.log(b); // 1
 console.log(c); // 1
+
+let bar = "";
+const doesItLookGoodWhenItBecomesThatLong = function () {
+  console.log("called");
+};
+const isThisReallyHappening = function () {
+  console.log("called again");
+};
+
+// notes about control statements
+// bad
+if (foo === 123 && bar === "abc") {
+  // thing1();
+}
+
+// good
+if (foo === 123 && bar === "abc") {
+  // thing1();
+}
+
+// good
+if (
+  (foo === 123 || bar === "abc") &&
+  doesItLookGoodWhenItBecomesThatLong() &&
+  isThisReallyHappening()
+) {
+  // thing1();
+}
