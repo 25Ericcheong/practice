@@ -908,3 +908,13 @@ $.ajax({
 })
   .done(() => console.log('Congratulations!'))
   .fail(() => console.log('You have failed this city.'));
+
+// enforce spacing between keys and values in object literal properties
+// bad
+var obj = { foo : 42 };
+var obj2 = { foo:42 };
+
+// good
+var obj = { foo: 42 };
+
+
