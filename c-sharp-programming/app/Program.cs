@@ -1,2 +1,13 @@
-﻿// See https://aka.ms/new-console-template for more information
-Console.WriteLine("Hello, World!");
+﻿using System;
+
+class Hello
+{
+  static void Main()
+  {
+    Console.WriteLine("Hello, World!");
+
+    int i = 123;
+    object o = i;    // Boxing
+    int j = (int)o;  // Unboxing
+  }
+}
