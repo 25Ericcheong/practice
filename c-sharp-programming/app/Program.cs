@@ -1,4 +1,4 @@
-﻿using System;
+﻿using con = System.Console;
 using Example0;
 
 class Hello
@@ -6,10 +6,7 @@ class Hello
   static void Main()
   {
     Console.WriteLine("Hello, World!");
-
-    int i = 123;
-    object o = i;    // Boxing
-    int j = (int)o;  // Unboxing
+    con.WriteLine("Printed with alias!");
 
     Object1 obj = new Object1();
     String temp = obj.ToString();
