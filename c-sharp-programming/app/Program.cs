@@ -7,6 +7,7 @@ class Hello
 {
   static void Main(string[] args)
   {
+    Console.WriteLine("Simple console print example");
     Console.WriteLine("Hello, World!");
     con.WriteLine("Printed with alias!");
 
@@ -34,6 +35,21 @@ class Hello
 
 
 
+    // example of using parameter array
+    int x, y, z;
+    x = 3;
+    y = 4;
+    z = 5;
+    Console.WriteLine("x={0} y={1} z={2}", x, y, z);
 
+    // equivalent to
+    int x1 = 3, y1 = 4, z1 = 5;
+
+    string s = "x={0} y={1} z={2}";
+    object[] args1 = new object[3];
+    args1[0] = x1;
+    args1[1] = y1;
+    args1[2] = z1;
+    Console.WriteLine(s, args1);
   }
 }
