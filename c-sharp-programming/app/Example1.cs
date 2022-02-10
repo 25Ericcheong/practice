@@ -1,5 +1,6 @@
 namespace Example1;
 
+// example of typed parameter utilization
 public class Pair<TFirst, TSecond>
 {
   public TFirst First { get; }

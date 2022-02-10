@@ -1,4 +1,6 @@
 namespace Example0
+
+// example of one liner ToString method
 {
   public class Object1
   {
