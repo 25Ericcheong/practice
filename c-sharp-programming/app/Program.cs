@@ -1,6 +1,7 @@
 ﻿using con = System.Console;
 using eg0 = Example0;
 using eg1 = Example1;
+using eg2 = Example2;
 
 namespace Hello;
 class Hello
@@ -48,15 +49,28 @@ class Hello
 
     // equivalent to
     int x1 = 3, y1 = 4, z1 = 5;
-
     string s = "x={0} y={1} z={2}";
     object[] args1 = new object[3];
     args1[0] = x1;
     args1[1] = y1;
     args1[2] = z1;
     Console.WriteLine(s, args1);
+
+
+
+    // example of virtual, override, abstract methods
+    PrintFormat("Virtual, override, abstract method example");
+    eg2.Expression e = new eg2.Operation(
+    new eg2.VariableReference("x"),
+    '+',
+    new eg2.Constant(3));
+
+    Dictionary<string, object> vars = new();
+    vars["x"] = 3;
+    con.WriteLine(e.Evaluate(vars));
   }
 
+  // used to print formatted examples to some extend
   public static void PrintFormat(String input)
   {
     Console.WriteLine(" ");
