@@ -14,10 +14,13 @@ class Hello
     String temp = obj.ToString();
     Console.WriteLine(temp);
 
+    // example of using reference parameter
     int i = 1, j = 2;
     eg0.Object1.Swap(ref i, ref j);
     con.WriteLine($"{i} {j}");
 
+    // example of using out parameter
+    eg0.Object1.OutUsage();
 
 
     // example of utilizing type parameters
