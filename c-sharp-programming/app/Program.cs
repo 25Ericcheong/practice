@@ -68,6 +68,24 @@ class Hello
     Dictionary<string, object> vars = new();
     vars["x"] = 3;
     con.WriteLine(e.Evaluate(vars));
+
+    PrintFormat("A more extensive use of the expression class created");
+    eg2.Expression e0 = new eg2.Operation(
+    new eg2.VariableReference("x"),
+    '*',
+    new eg2.Operation(
+        new eg2.VariableReference("y"),
+        '+',
+        new eg2.Constant(2)
+    )
+);
+    Dictionary<string, object> diffVars = new();
+    diffVars["x"] = 3;
+    diffVars["y"] = 5;
+    Console.WriteLine(e0.Evaluate(diffVars)); // "21"
+    diffVars["x"] = 1.5;
+    diffVars["y"] = 9;
+    Console.WriteLine(e0.Evaluate(diffVars)); // "16.5"
   }
 
   // used to print formatted examples to some extend
