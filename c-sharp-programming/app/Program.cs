@@ -2,6 +2,7 @@
 using eg0 = Example0;
 using eg1 = Example1;
 using eg2 = Example2;
+using eg3 = Example3;
 
 namespace Hello;
 class Hello
@@ -71,14 +72,15 @@ class Hello
 
     PrintFormat("A more extensive use of the expression class created");
     eg2.Expression e0 = new eg2.Operation(
-    new eg2.VariableReference("x"),
-    '*',
-    new eg2.Operation(
+      new eg2.VariableReference("x"),
+      '*',
+      new eg2.Operation(
         new eg2.VariableReference("y"),
         '+',
         new eg2.Constant(2)
-    )
-);
+      )
+    );
+
     Dictionary<string, object> diffVars = new();
     diffVars["x"] = 3;
     diffVars["y"] = 5;
@@ -86,6 +88,16 @@ class Hello
     diffVars["x"] = 1.5;
     diffVars["y"] = 9;
     Console.WriteLine(e0.Evaluate(diffVars)); // "16.5"
+
+
+
+    // example of other function members
+    eg3.MyList<string> names = new();
+    names.Capacity = 100;   // Invokes set accessor
+    int ii = names.Count;    // Invokes get accessor
+    int jj = names.Capacity; // Invokes get accessor
+
+
   }
 
   // used to print formatted examples to some extend
