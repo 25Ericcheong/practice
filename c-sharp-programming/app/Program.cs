@@ -120,6 +120,15 @@ class Hello
     t[0] = 1;
     t[1] = 2;
     t[2] = 3;
+
+
+
+    // foreach usage
+    PrintFormat("Foreach usage example");
+    foreach (int item in b)
+    {
+      Console.WriteLine(item);
+    }
   }
 
   // used to print formatted examples to some extend
