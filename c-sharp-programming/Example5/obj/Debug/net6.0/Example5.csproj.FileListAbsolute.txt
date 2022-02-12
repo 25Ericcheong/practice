@@ -1,0 +1,15 @@
+C:\Users\ericc\Documents\GitHub\practice\c-sharp-programming\app\Example5\bin\Debug\net6.0\Example5.exe
+C:\Users\ericc\Documents\GitHub\practice\c-sharp-programming\app\Example5\bin\Debug\net6.0\Example5.deps.json
+C:\Users\ericc\Documents\GitHub\practice\c-sharp-programming\app\Example5\bin\Debug\net6.0\Example5.runtimeconfig.json
+C:\Users\ericc\Documents\GitHub\practice\c-sharp-programming\app\Example5\bin\Debug\net6.0\Example5.dll
+C:\Users\ericc\Documents\GitHub\practice\c-sharp-programming\app\Example5\bin\Debug\net6.0\ref\Example5.dll
+C:\Users\ericc\Documents\GitHub\practice\c-sharp-programming\app\Example5\bin\Debug\net6.0\Example5.pdb
+C:\Users\ericc\Documents\GitHub\practice\c-sharp-programming\app\Example5\obj\Debug\net6.0\Example5.csproj.AssemblyReference.cache
+C:\Users\ericc\Documents\GitHub\practice\c-sharp-programming\app\Example5\obj\Debug\net6.0\Example5.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\ericc\Documents\GitHub\practice\c-sharp-programming\app\Example5\obj\Debug\net6.0\Example5.AssemblyInfoInputs.cache
+C:\Users\ericc\Documents\GitHub\practice\c-sharp-programming\app\Example5\obj\Debug\net6.0\Example5.AssemblyInfo.cs
+C:\Users\ericc\Documents\GitHub\practice\c-sharp-programming\app\Example5\obj\Debug\net6.0\Example5.csproj.CoreCompileInputs.cache
+C:\Users\ericc\Documents\GitHub\practice\c-sharp-programming\app\Example5\obj\Debug\net6.0\Example5.dll
+C:\Users\ericc\Documents\GitHub\practice\c-sharp-programming\app\Example5\obj\Debug\net6.0\ref\Example5.dll
+C:\Users\ericc\Documents\GitHub\practice\c-sharp-programming\app\Example5\obj\Debug\net6.0\Example5.pdb
+C:\Users\ericc\Documents\GitHub\practice\c-sharp-programming\app\Example5\obj\Debug\net6.0\Example5.genruntimeconfig.cache

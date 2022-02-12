@@ -4,6 +4,7 @@ using eg1 = Example1;
 using eg2 = Example2;
 using eg3 = Example3;
 using eg4 = Example4;
+using System.Text;
 
 namespace Hello;
 class Hello
@@ -129,6 +130,16 @@ class Hello
     {
       Console.WriteLine(item);
     }
+
+
+
+    // example of using, using directive
+    PrintFormat("Printing a string builder");
+    StringBuilder builder = new();
+    builder.AppendLine("Hello");
+    builder.AppendLine("World!");
+
+    Console.WriteLine(builder.ToString());
   }
 
   // used to print formatted examples to some extend
