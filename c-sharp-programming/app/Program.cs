@@ -3,6 +3,7 @@ using eg0 = Example0;
 using eg1 = Example1;
 using eg2 = Example2;
 using eg3 = Example3;
+using eg4 = Example4;
 
 namespace Hello;
 class Hello
@@ -92,12 +93,33 @@ class Hello
 
 
     // example of other function members
+    PrintFormat("Function members example");
     eg3.MyList<string> names = new();
     names.Capacity = 100;   // Invokes set accessor
     int ii = names.Count;    // Invokes get accessor
     int jj = names.Capacity; // Invokes get accessor
+    con.WriteLine(ii);
 
 
+
+    // example of array in general and jagged array 
+    PrintFormat("Array usage example");
+    int[][] a = new int[3][];
+    a[0] = new int[10];
+    a[1] = new int[5];
+    a[2] = new int[20];
+
+    // following allocates and initializes an int[] with three elements
+    int[] b = new int[] { 1, 2, 3 };
+
+    // shortened version
+    int[] c = { 1, 2, 3 };
+
+    // also equivalent to
+    int[] t = new int[3];
+    t[0] = 1;
+    t[1] = 2;
+    t[2] = 3;
   }
 
   // used to print formatted examples to some extend
