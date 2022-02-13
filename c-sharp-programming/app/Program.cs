@@ -4,6 +4,7 @@ using eg1 = Example1;
 using eg2 = Example2;
 using eg3 = Example3;
 using eg4 = Example4;
+using eg5 = Example5;
 using System.Text;
 
 namespace Hello;
@@ -140,6 +141,12 @@ class Hello
     builder.AppendLine("World!");
 
     Console.WriteLine(builder.ToString());
+
+
+
+    // example of using auto implemented method
+    eg5.Person person = new eg5.Person("Eric Cheong");
+    con.WriteLine(person.Name);
   }
 
   // used to print formatted examples to some extend
