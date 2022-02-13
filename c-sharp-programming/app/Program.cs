@@ -145,6 +145,7 @@ class Hello
 
 
     // example of using auto implemented method
+    PrintFormat("Classes with auto implemented");
     eg5.Person person = new eg5.Person("Eric Cheong");
     con.WriteLine(person.Name);
   }
