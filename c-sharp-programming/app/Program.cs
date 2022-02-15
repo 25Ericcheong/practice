@@ -185,6 +185,12 @@ class Hello
 
     // p1 values remain unchanged because p2 is  copy.
     Console.WriteLine("p1 Name = {0} Age = {1}", p1.Name, p1.Age);
+
+    // testing ValueType.Equals method
+    p1.Name = "Spencer";
+    p1.Age = 7;
+    if (p2.Equals(p1))
+      Console.WriteLine("p2 and p1 have the same values.");
   }
 
   // used to print formatted examples to some extend
