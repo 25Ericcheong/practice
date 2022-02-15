@@ -5,6 +5,7 @@ using eg2 = Example2;
 using eg3 = Example3;
 using eg4 = Example4;
 using eg5 = Example5;
+using eg6 = Example6;
 using System.Text;
 
 namespace Hello;
@@ -148,6 +149,42 @@ class Hello
     PrintFormat("Classes with auto implemented");
     eg5.Person person = new eg5.Person("Eric Cheong");
     con.WriteLine(person.Name);
+
+
+
+    // example of displaying diff between class and struct instance
+    PrintFormat("Showcasing differences between class and struct instance");
+    // for class instance
+    eg6.Person person1 = new eg6.Person("Leopold", 6);
+    Console.WriteLine("person1 Name = {0} Age = {1}", person1.Name, person1.Age);
+
+    // Declare new person, assign person1 to it.
+    eg6.Person person2 = person1;
+
+    // Change the name of person2, and person1 also changes.
+    person2.Name = "Molly";
+    person2.Age = 16;
+
+    Console.WriteLine("person2 Name = {0} Age = {1}", person2.Name, person2.Age);
+    Console.WriteLine("person1 Name = {0} Age = {1}", person1.Name, person1.Age);
+
+    // for struct instance
+    // Create  struct instance and initialize by using "new".
+    // Memory is allocated on thread stack.
+    eg6.OtherPerson p1 = new eg6.OtherPerson("Alex", 9);
+    Console.WriteLine("p1 Name = {0} Age = {1}", p1.Name, p1.Age);
+
+    // Create  new struct object. Note that  struct can be initialized
+    // without using "new".
+    eg6.OtherPerson p2 = p1;
+
+    // Assign values to p2 members.
+    p2.Name = "Spencer";
+    p2.Age = 7;
+    Console.WriteLine("p2 Name = {0} Age = {1}", p2.Name, p2.Age);
+
+    // p1 values remain unchanged because p2 is  copy.
+    Console.WriteLine("p1 Name = {0} Age = {1}", p1.Name, p1.Age);
   }
 
   // used to print formatted examples to some extend
